@@ -71,6 +71,13 @@
 		    <groupId>javax.xml.bind</groupId>
 		    <artifactId>jaxb-api</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.openfeign/feign-core -->
+<dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-core</artifactId>
+    <version>11.1</version>
+</dependency>
+		
 	</dependencies>
 
 	<build>
