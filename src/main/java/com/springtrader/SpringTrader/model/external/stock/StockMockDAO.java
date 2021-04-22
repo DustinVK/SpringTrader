@@ -1,0 +1,19 @@
+package com.springtrader.SpringTrader.model.external.stock;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
+@Qualifier("mockStock")
+public class StockMockDAO implements IStockDAO{
+
+	@Override
+	public Stock getStockQuote(String symbol) {
+		Stock stockDTO = new Stock();
+		stockDTO.setPrice("133.5900");
+		stockDTO.setSymbol(symbol);
+		stockDTO.setChangePercent("0.7618%");
+		return stockDTO;
+	}
+
+}
