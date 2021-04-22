@@ -30,6 +30,7 @@ create table userStocks (
     username varchar_ignorecase(50) not null,
     symbol varchar(10) not null,
     amount decimal(19,4) not null,
+    change decimal(19,4) not null,
     stamp timestamp not null,
     constraint fk_user_stocks foreign key(username) references users(username)
 );
