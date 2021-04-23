@@ -20,6 +20,7 @@ import com.springtrader.SpringTrader.model.internal.user.UserDAO;
 import com.springtrader.SpringTrader.service.BalanceService;
 import com.springtrader.SpringTrader.service.SearchService;
 import com.springtrader.SpringTrader.service.StockService;
+import com.springtrader.SpringTrader.service.UserStockService;
 
 @SpringBootApplication
 public class SpringTraderApplication {
@@ -51,6 +52,11 @@ public class SpringTraderApplication {
 		return new BalanceService();
 	}
 	
+	@Bean 
+	public UserStockService getUserStockService() {
+		return new UserStockService();
+	}
+	
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -67,7 +73,7 @@ public class SpringTraderApplication {
 //	public AlphaVantageStockDAO getAlphaStockDAO() {
 //		return new AlphaVantageStockDAO();
 //	}
-//	
+	
 	
 	public static void main(String[] args) {
 //		PasswordEncoder pwe = new BCryptPasswordEncoder();

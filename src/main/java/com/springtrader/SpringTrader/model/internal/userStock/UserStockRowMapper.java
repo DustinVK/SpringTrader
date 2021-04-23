@@ -15,7 +15,7 @@ public class UserStockRowMapper implements RowMapper<UserStock>{
 		userStock.setAmount(rs.getBigDecimal("amount"));
 		userStock.setPrice(rs.getBigDecimal("price"));
 		userStock.setStamp(rs.getTimestamp("stamp"));
-		return null;
+		return userStock;
 	}
 
 }

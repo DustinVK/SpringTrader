@@ -1,3 +1,1 @@
-    <tr th:each="user : ${users}">
-                    <td th:text="${user.username}"></td>
-                </tr>
+<h1>HI</h1>

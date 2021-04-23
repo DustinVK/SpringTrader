@@ -10,5 +10,6 @@
 <tr th:each="result : ${results}">
 	<td th:text="${result.currency}"></td>
 </tr>
-</div>
+
 </table>
+</div>

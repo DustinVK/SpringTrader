@@ -2,6 +2,7 @@ package com.springtrader.SpringTrader.model.internal.userStock;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Comparator;
 
 public class UserStock {
 	private String username;
@@ -39,6 +40,11 @@ public class UserStock {
 	}
 	public void setStamp(Timestamp timeStamp) {
 		this.stamp = timeStamp;
+	}
+	
+	@Override
+	public String toString() {
+		return "USERSTOCK:\n SYMBOL: \n"+"Username: "+this.getUsername()+"";
 	}
 
 }

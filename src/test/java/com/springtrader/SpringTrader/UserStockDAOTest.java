@@ -16,7 +16,7 @@ class UserStockDAOTest {
 	
 	
 	@Test
-	public void whenInjectInMemoryDataSource_thenReturnCorrectUserStockDAOQuery() {
+	public void whenInjectInMemoryDataSource_thenReturnCorrectUserStockNumber() {
 	    DataSource dataSource = new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2)
 	      .addScript("classpath:jdbc/schema.sql")
 	      .addScript("classpath:jdbc/test-data.sql")
@@ -25,6 +25,7 @@ class UserStockDAOTest {
 	    UserStockDAO userStockDAO = new UserStockDAO();
 	    userStockDAO.setDataSource(dataSource);
 
-	    assertEquals(1, userStockDAO.getUserStocks("user").size());
+	    assertEquals(3, userStockDAO.getUserStocks("user").size());
 	}
+	
 }

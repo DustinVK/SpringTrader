@@ -26,15 +26,6 @@
 <div id="nav-placeholder">
 </div>
 <!--end of Navigation bar-->
-<div sec:authorize="isAuthenticated()">
-  This content is only shown to authenticated users.
-</div>
-<div sec:authorize="hasRole('ROLE_ADMIN')">
-  This content is only shown to administrators.
-</div>
-<div sec:authorize="hasRole('ROLE_USER')">
-  This content is only shown to users.
-</div>
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">

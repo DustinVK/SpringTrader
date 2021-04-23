@@ -17,4 +17,5 @@ public class UserStockDAO {
 				"ORDER BY stamp DESC ";		
 		return jdbc.query(sql, new UserStockRowMapper(), username);
     }
+    
 }

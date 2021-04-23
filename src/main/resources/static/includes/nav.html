@@ -38,12 +38,12 @@
   let name = sessionStorage.getItem("uname");
   let balance = sessionStorage.getItem("balance");
   if(name != null){
-		menu += "<a class='nav-link' href='/'>Portfolio</a>" +
+		menu += "<button class='nav-link-button' onclick='getPortfolio()'>Portfolio</button>" +
 		"<li class='dropdown'>" +
         "<a class='nav-link' data-toggle='dropdown' href='#'>"+name+" <i class='fa fa-caret-down'></i>" +
         "<span class='caret'></span></a>" +
         "<ul class='dropdown-menu'>" +
-        "<li><button class='btn logout-btn' onclick='getUserBalance()'>Balance</button></li>" +
+        "<li><button class='btn logout-btn' onclick=''>Balance</button></li>" +
         "<li><button class='btn logout-btn' onclick='getUser()'>Account</button></li>" + 
         "<li><a href='#'><button class='btn logout-btn' onclick='logout()'>Logout</button></a></li>" +
         "</ul>"+

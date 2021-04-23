@@ -3,8 +3,11 @@ $(document).ready(function(){
 	if(sessionStorage.getItem("uname") == null){
 		
 	} else {
-		//showLoggedInMenu();
-		getBalance();
+		if(sessionStorage.getItem("balance") == null){
+			location.reload()
+			getBalance();
+		}
+		
 	}
 	var view = getQueryStringVariable('view');
 	if(view === null){
@@ -103,6 +106,28 @@ function getUser(){
 		});
 }
 
+function getPortfolio(){
+		let username = sessionStorage.getItem("uname");
+		$.ajax({
+		url: "./users/"+username+"/portfolio",
+		type: 'GET',
+		headers: {
+    		"Authorization": "Bearer "+sessionStorage.getItem("token")
+  		},
+		dataType : "text",
+        contentType: "application/json",
+		}).fail(function(response) {
+			console.log(response);
+			$("#login-message").append("Invalid xxx");
+			
+		}).done(function(response) {
+			$("#content-placeholder").empty();
+			$("#pagebody").empty();
+			$("#content-placeholder").append(response);
+			location.reload
+		});
+}
+
 function logout(){
 	sessionStorage.clear("uname");
 	sessionStorage.clear("token");
@@ -145,7 +170,7 @@ function useSearchBarButton(){
 }
 	
 function stockSearch(input){
-	$("#pageBody").empty();
+	$("#content-placeholder").empty();
 	console.log(input);
 	$.ajax({
 		url: "./search/"+input,
@@ -171,7 +196,7 @@ function stockSearch(input){
 			
 			});
 			results += "</div>";
-							$("#pageBody").append(results);
+							$("#content-placeholder").append(results);
 	});
 		
 }
