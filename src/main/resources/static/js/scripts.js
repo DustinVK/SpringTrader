@@ -4,6 +4,7 @@ $(document).ready(function(){
 		
 	} else {
 		//showLoggedInMenu();
+		getBalance();
 	}
 	var view = getQueryStringVariable('view');
 	if(view === null){
@@ -41,8 +42,24 @@ function showLoggedInMenu(){
 		"<a class='nav-link' href='/'>"+name+"</a>";
 
 		$("#nav-menu-placeholder").append(menu);
-	//	$("#nav-menu-placeholder").append("<a class='nav-link' href='/user/"+name+"'>"+name+"</a>");
 	
+}
+
+function getBalance(){
+		$.ajax({
+		url: "./users/"+sessionStorage.getItem("uname")+"/balance",
+		type: 'GET',
+		headers: {
+    		"Authorization": "Bearer "+sessionStorage.getItem("token")
+  		},
+		dataType : "json",
+        contentType: "application/json",
+		}).fail(function(response) {
+			console.log("error");
+			console.log(response);
+		}).done(function(response) {
+			sessionStorage.setItem("balance",response.balance);
+		});
 }
 
 function login(){
@@ -62,28 +79,7 @@ function login(){
 		}).done(function(response) {
 			sessionStorage.setItem("token", JSON.parse(response).jwt);
 			sessionStorage.setItem("uname", username);
-			getBalance(username);
 			location.reload();
-		});
-}
-
-function getBalance(username) {
-	console.log("HI?");
-		$.ajax({
-			url: "./users/"+username+"/balance",
-			type: 'GET',
-			headers: {
-    			"Authorization": "Bearer "+sessionStorage.getItem("token")
-  			},
-			dataType : "text",
-	        contentType: "application/json",
-		}).fail(function(response) {
-			console.log(response);
-			console.log("Something went wrong in getBalance()");
-			
-		}).done(function(response) {
-			console.log("SUp");
-			console.log(response);
 		});
 }
 
@@ -195,9 +191,10 @@ function getStock(symbol){
     }).done(function(response) {
 	
 		var results = "<div class='big-stock-symbol'><h1>"+response.symbol+"</h1></div>" +
-		"<ul><li>"+response.price+"</li><li>"+response.changePercent+"</li></ul>";    	
+		"<h2>$"+response.price+"</h2><h3>"+response.changePercent+"</h3>" +
+		"<button class='btn btn-info btnround' type='buy' onclick='buyStock("+symbol+")'>Buy</button>";   	
 				$("#pageBody").append(results);
-				;
+				
 	
 	});
 		

@@ -58,9 +58,6 @@ public class SpringTraderApplication {
 	public static void main(String[] args) {
 //		PasswordEncoder pwe = new BCryptPasswordEncoder();
 //		System.out.println(pwe.encode("pass"));
-		UserDAO dao = new UserDAO();
-		dao.setDataSource(dataSource());
-		System.out.println(dao.userExists("usser"));
 		SpringApplication.run(SpringTraderApplication.class, args);
 	}
 

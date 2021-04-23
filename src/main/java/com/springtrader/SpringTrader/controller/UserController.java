@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springtrader.SpringTrader.model.internal.balance.Balance;
 import com.springtrader.SpringTrader.model.internal.user.User;
 import com.springtrader.SpringTrader.model.internal.user.UserPrincipal;
 import com.springtrader.SpringTrader.service.BalanceService;
@@ -23,19 +24,13 @@ import com.springtrader.SpringTrader.service.BalanceService;
 @Controller
 public class UserController {
 	
-	@Autowired
-	BalanceService balanceService;
-	
 	@RequestMapping("/users/{username}")
     public String getUserInfo(@PathVariable("username") String userName, Authentication auth, Model model){
 	 
 	  System.out.println(auth.getName());
 	  return "user";
     }
-	@RequestMapping("users/{username}/balance")
-	public String getLatestUserBalance(@PathVariable("username") String userName){
-	  	return balanceService.getLatestBalance(userName).getBalance().toString();
-	}
+
   
 //  @GetMapping("/listHeaders")
 //  public ResponseEntity<String> listAllHeaders(

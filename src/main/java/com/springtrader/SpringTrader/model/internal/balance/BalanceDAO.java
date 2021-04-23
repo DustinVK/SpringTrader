@@ -8,12 +8,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class BalanceDAO {
-	@SuppressWarnings("unused")
-	private DataSource dataSource;
 	private JdbcTemplate jdbc;
 	   
     public void setDataSource(DataSource dataSource) {
-       this.dataSource = dataSource;
        this.jdbc= new JdbcTemplate(dataSource);
     }
 	public List<Balance> getBalancesByUsername(String username) {
