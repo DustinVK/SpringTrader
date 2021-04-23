@@ -13,6 +13,9 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
+import com.springtrader.SpringTrader.model.external.search.AlphaVantageSearchDAO;
+import com.springtrader.SpringTrader.model.external.search.ISearchDAO;
+import com.springtrader.SpringTrader.model.external.stock.AlphaVantageStockDAO;
 import com.springtrader.SpringTrader.model.internal.user.UserDAO;
 import com.springtrader.SpringTrader.service.BalanceService;
 import com.springtrader.SpringTrader.service.SearchService;
@@ -51,9 +54,20 @@ public class SpringTraderApplication {
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
-		//return NoOpPasswordEncoder.getInstance();
+		//return NoOpPasswordEncoder.getInstance(); // plain text 'encoder' for testing
 	}
 
+
+	@Bean
+	public ISearchDAO getAlphaSearchDAO() {
+		return new AlphaVantageSearchDAO();
+	}
+	 // For tests
+//	@Bean
+//	public AlphaVantageStockDAO getAlphaStockDAO() {
+//		return new AlphaVantageStockDAO();
+//	}
+//	
 	
 	public static void main(String[] args) {
 //		PasswordEncoder pwe = new BCryptPasswordEncoder();

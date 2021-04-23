@@ -12,7 +12,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-@Component
+
+@Component // comment component and qualifier out for real search 
 @Qualifier("AlphaVantage")
 @PropertySource("application.properties")
 public class AlphaVantageSearchDAO implements ISearchDAO {

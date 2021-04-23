@@ -13,8 +13,9 @@ import com.springtrader.SpringTrader.model.internal.userStock.UserStock;
 import com.springtrader.SpringTrader.model.internal.userStock.UserStockDAO;
 
 @Component
-public class UserService {
+public class PortfolioService {
 	private UserStockDAO userStockDAO;
+	private UserDAO userBalanceDAO;
 	
 	@Autowired
 	UserDAO userDAO;

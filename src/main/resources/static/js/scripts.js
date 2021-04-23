@@ -26,7 +26,6 @@ $(document).ready(function(){
 });
 
 
-
 var getQueryStringVariable = function ( field, url ) {
 		var href = url ? url : window.location.href;
 		var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
@@ -163,7 +162,7 @@ function stockSearch(input){
 			
 				results += "<div class='card mb-4'>" +
 					            "<div class='card-body'>" +
-					              "<h2 class='card-title'><a href='./?view=stock&symbol="+value.symbol+ "'>" + value.symbol + "</a></h2>" +
+					              "<h2 class='card-title'><a class='stock-header' href='./?view=stock&symbol="+value.symbol+ "'>" + value.symbol + "</a></h2>" +
 					              "<p class='card-text'>" + value.name + "</p>" +				              			              
 					            "</div>" +
 					          "</div>";

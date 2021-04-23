@@ -4,7 +4,7 @@
 <head>
   <meta name="description" content="Webpage description goes here" />
   <meta charset="utf-8">
-  <title>Spring Trader</title>
+  <title>Stonks</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
