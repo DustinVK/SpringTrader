@@ -15,8 +15,11 @@ INSERT INTO authorities (username, authority)
 INSERT INTO authorities (username, authority)
 	values ('admin', 'ADMIN');
 	
-INSERT INTO balances (username, amount, change, stamp)
-	values ('user', 100.0, 100.0,'2012-09-17 19:47:52.69');
+INSERT INTO balances (username, amount, stamp)
+	values ('user', 2000.0,'2021-03-26 12:47:52.69');
 	
-INSERT INTO balances (username, amount,change, stamp)
-	values ('user', 200.0, 100.0,'2012-09-17 18:47:52.69');
+INSERT INTO userStocks (username, symbol, amount, price, stamp)
+	values ('user', 'TSLA', 3, 611.29, '2021-03-29 18:47:52.69');
+
+INSERT INTO balances (username, amount, stamp)
+	values ('user', 166.13, '2012-09-17 18:47:52.69');

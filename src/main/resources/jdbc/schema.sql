@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS balances;
 DROP TABLE IF EXISTS authorities;
+DROP TABLE IF EXISTS userStocks;
 DROP TABLE IF EXISTS users;
 
 
@@ -21,16 +22,19 @@ create unique index ix_auth_username on authorities (username,authority);
 create table balances (
     username varchar_ignorecase(50) not null,
     amount decimal(19,4) not null,
-    change decimal(19,4) not null,
     stamp timestamp not null,
     constraint fk_balances_users foreign key(username) references users(username)
 );
+create unique index ix_user_balance on balances (username,stamp);
+
 
 create table userStocks (
     username varchar_ignorecase(50) not null,
     symbol varchar(10) not null,
     amount decimal(19,4) not null,
-    change decimal(19,4) not null,
+    price decimal(19,4) not null,
     stamp timestamp not null,
     constraint fk_user_stocks foreign key(username) references users(username)
 );
+create unique index ix_user_stock on userStocks (username,stamp);
+

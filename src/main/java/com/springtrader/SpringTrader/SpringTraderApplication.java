@@ -13,13 +13,16 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
+import com.springtrader.SpringTrader.model.internal.user.UserDAO;
+import com.springtrader.SpringTrader.service.BalanceService;
 import com.springtrader.SpringTrader.service.SearchService;
 import com.springtrader.SpringTrader.service.StockService;
 
 @SpringBootApplication
 public class SpringTraderApplication {
+	
 	@Bean
-	public DataSource dataSource() {
+	public static DataSource dataSource() {
 	    return new EmbeddedDatabaseBuilder()
 	      .setType(EmbeddedDatabaseType.H2)
 	      .addScript("classpath:jdbc/schema.sql")
@@ -40,17 +43,24 @@ public class SpringTraderApplication {
 		return new StockService();
 	}
 	
+	@Bean 
+	public BalanceService getBalanceService() {
+		return new BalanceService();
+	}
+	
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 		//return NoOpPasswordEncoder.getInstance();
 	}
-	
-	
+
 	
 	public static void main(String[] args) {
-		PasswordEncoder pwe = new BCryptPasswordEncoder();
-		System.out.println(pwe.encode("pass"));
+//		PasswordEncoder pwe = new BCryptPasswordEncoder();
+//		System.out.println(pwe.encode("pass"));
+		UserDAO dao = new UserDAO();
+		dao.setDataSource(dataSource());
+		System.out.println(dao.userExists("usser"));
 		SpringApplication.run(SpringTraderApplication.class, args);
 	}
 

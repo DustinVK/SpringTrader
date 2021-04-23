@@ -62,7 +62,28 @@ function login(){
 		}).done(function(response) {
 			sessionStorage.setItem("token", JSON.parse(response).jwt);
 			sessionStorage.setItem("uname", username);
+			getBalance(username);
 			location.reload();
+		});
+}
+
+function getBalance(username) {
+	console.log("HI?");
+		$.ajax({
+			url: "./users/"+username+"/balance",
+			type: 'GET',
+			headers: {
+    			"Authorization": "Bearer "+sessionStorage.getItem("token")
+  			},
+			dataType : "text",
+	        contentType: "application/json",
+		}).fail(function(response) {
+			console.log(response);
+			console.log("Something went wrong in getBalance()");
+			
+		}).done(function(response) {
+			console.log("SUp");
+			console.log(response);
 		});
 }
 
@@ -74,7 +95,7 @@ function getUser(){
 		headers: {
     		"Authorization": "Bearer "+sessionStorage.getItem("token")
   		},
-		dataType : "html",
+		dataType : "text",
         contentType: "application/json",
 		}).fail(function(response) {
 			console.log(response);
