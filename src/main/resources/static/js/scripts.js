@@ -106,33 +106,8 @@ function getUser(){
 		});
 }
 
-function getPortfolio(){
-		let username = sessionStorage.getItem("uname");
-		$.ajax({
-		url: "./users/"+username+"/portfolio",
-		type: 'GET',
-		headers: {
-    		"Authorization": "Bearer "+sessionStorage.getItem("token")
-  		},
-		dataType : "text",
-        contentType: "application/json",
-		}).fail(function(response) {
-			console.log(response);
-			$("#login-message").append("Invalid xxx");
-			
-		}).done(function(response) {
-			$("#content-placeholder").empty();
-			$("#pagebody").empty();
-			$("#content-placeholder").append(response);
-			location.reload
-		});
-}
 
-function logout(){
-	sessionStorage.clear("uname");
-	sessionStorage.clear("token");
-	window.location.replace("./");
-}
+
 
 // Get the modal
 var modal = document.getElementById('id01');
@@ -144,29 +119,10 @@ window.onclick = function(event) {
     }
 }
 
-function getAdmin(){
-		$.ajax({
-		url: "./admin",
-		type: 'GET',
-		headers: {
-    		"Authorization": "Bearer "+sessionStorage.getItem("token")
-  		},
-		dataType : "text",
-        contentType: "application/json",
-		}).fail(function(response) {
-			console.log("error");
-			console.log(response);
-		}).done(function(response) {
-			console.log("success?");
-			console.log(response);
-		});
-}
 
 function useSearchBarButton(){
 	let input = document.getElementById('searchbar').value;
 	location.replace("./?view=search&entry="+input);
-	
-	
 }
 	
 function stockSearch(input){
@@ -222,4 +178,33 @@ function getStock(symbol){
 	
 	});
 		
+}
+
+function usePortfolioButton(){
+	location.replace("./?view=portfolio");
+	getPortfolio();
+}
+
+  function getPortfolio(){
+		$("#pagebody").empty();
+		$("#content-placeholder").empty();
+
+		let username = sessionStorage.getItem("uname");
+		$.ajax({
+		url: "./users/"+username+"/portfolio",
+		type: 'GET',
+		headers: {
+  		"Authorization": "Bearer "+sessionStorage.getItem("token")
+		},
+		dataType : "text",
+      contentType: "application/json",
+		}).fail(function(response) {
+			console.log(response);
+			$("#login-message").append("Invalid portfolio");
+			
+		}).done(function(response) {
+			$("#content-placeholder").empty();
+			$("#pagebody").empty();
+			$("#content-placeholder").append(response);
+		});
 }

@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springtrader.SpringTrader.model.internal.AuthenticationRequest;
-import com.springtrader.SpringTrader.model.internal.AuthenticationResponse;
 import com.springtrader.SpringTrader.service.MyUserDetailsService;
+import com.springtrader.SpringTrader.util.AuthenticationRequest;
+import com.springtrader.SpringTrader.util.AuthenticationResponse;
 import com.springtrader.SpringTrader.util.JwtUtil;
 
 

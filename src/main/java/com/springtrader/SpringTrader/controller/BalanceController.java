@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.springtrader.SpringTrader.model.internal.balance.Balance;
+import com.springtrader.SpringTrader.model.balance.Balance;
 import com.springtrader.SpringTrader.service.BalanceService;
 
 @RestController

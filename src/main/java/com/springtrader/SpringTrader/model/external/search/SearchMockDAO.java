@@ -24,7 +24,7 @@ public class SearchMockDAO implements ISearchDAO {
 		results.add(r);
 		r = new SearchResult("TSLA", "Tesla Inc.", "USD");
 		results.add(r);
-		r = new SearchResult("N/A", "This shouldn't pass the service layer", "N/A");
+		r = new SearchResult("N/A", "This shouldn't pass the service", "N/A");
 		results.add(r);
 		return results;
 	}

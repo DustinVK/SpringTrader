@@ -8,7 +8,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.test.context.jdbc.Sql;
 
-import com.springtrader.SpringTrader.model.internal.userStock.UserStockDAO;
+import com.springtrader.SpringTrader.model.userStock.UserStockDAO;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @JdbcTest

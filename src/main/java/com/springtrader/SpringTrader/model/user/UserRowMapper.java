@@ -1,4 +1,4 @@
-package com.springtrader.SpringTrader.model.internal.user;
+package com.springtrader.SpringTrader.model.user;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -16,7 +16,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class JwtUtil {
 	
-	private final String KEY = "secret";
+	private final String KEY = "r>dA+tvB5)dq=#W9V2QN_3[2dz;JAH";
 	
 	public String extractUsername(String token) {
 		return extractClaim(token, Claims::getSubject);

@@ -7,7 +7,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <div class="search-container">
     		<input class='stock-search' id="searchbar" type="text" placeholder="Search Stocks..">
-    		<button class="btn btn-info btnround" type="submit" onclick="useSearchBarButton()"><i class="fa fa-search"></i></button>
+    		<button class="btn btn-info btnround" type="submit" onclick="stockSearch()"><i class="fa fa-search"></i></button>
 	  	</div>
 
 	  	
@@ -21,6 +21,12 @@
   </nav>
   <script>
   
+  function logout(){
+		sessionStorage.clear("uname");
+		sessionStorage.clear("token");
+		window.location.replace("./");
+	}
+  
   window.onclick = function(event) {
 	  if (event.target == modal) {
 	    modal.style.display = "none";
@@ -29,7 +35,7 @@
   
   $(".stock-search").on('keyup', function (e) {
 	    if (e.key === 'Enter' || e.keyCode === 13) {
-	        useSearchBarButton();
+	        stockSearch();
 	    }
 	});
   
@@ -38,7 +44,7 @@
   let name = sessionStorage.getItem("uname");
   let balance = sessionStorage.getItem("balance");
   if(name != null){
-		menu += "<button class='nav-link-button' onclick='getPortfolio()'>Portfolio</button>" +
+		menu += "<button class='nav-link-button' onclick='usePortfolioButton()'>Portfolio</button>" +
 		"<li class='dropdown'>" +
         "<a class='nav-link' data-toggle='dropdown' href='#'>"+name+" <i class='fa fa-caret-down'></i>" +
         "<span class='caret'></span></a>" +
@@ -60,5 +66,8 @@
 		  })
   }
   $("#nav-menu-placeholder").append(menu);
+  
+
+
 
   </script>

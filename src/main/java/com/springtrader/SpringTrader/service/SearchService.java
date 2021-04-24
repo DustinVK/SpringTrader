@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.springtrader.SpringTrader.model.external.search.ISearchDAO;
 import com.springtrader.SpringTrader.model.external.search.SearchResult;
 
+
 public class SearchService {
 	
 	final int ALPHAVANTAGE = 0;

@@ -1,4 +1,4 @@
-package com.springtrader.SpringTrader.model.internal;
+package com.springtrader.SpringTrader.util;
 
 public class AuthenticationRequest {
 	

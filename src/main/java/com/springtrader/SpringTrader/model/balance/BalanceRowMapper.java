@@ -1,4 +1,4 @@
-package com.springtrader.SpringTrader.model.internal.balance;
+package com.springtrader.SpringTrader.model.balance;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

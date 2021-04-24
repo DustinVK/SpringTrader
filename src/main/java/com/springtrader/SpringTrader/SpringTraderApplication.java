@@ -16,7 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import com.springtrader.SpringTrader.model.external.search.AlphaVantageSearchDAO;
 import com.springtrader.SpringTrader.model.external.search.ISearchDAO;
 import com.springtrader.SpringTrader.model.external.stock.AlphaVantageStockDAO;
-import com.springtrader.SpringTrader.model.internal.user.UserDAO;
+import com.springtrader.SpringTrader.model.user.UserDAO;
 import com.springtrader.SpringTrader.service.BalanceService;
 import com.springtrader.SpringTrader.service.SearchService;
 import com.springtrader.SpringTrader.service.StockService;
@@ -42,20 +42,6 @@ public class SpringTraderApplication {
 		return new SearchService();
 	}
 	
-	@Bean
-	public StockService getStockQuote() {
-		return new StockService();
-	}
-	
-	@Bean 
-	public BalanceService getBalanceService() {
-		return new BalanceService();
-	}
-	
-	@Bean 
-	public UserStockService getUserStockService() {
-		return new UserStockService();
-	}
 	
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {

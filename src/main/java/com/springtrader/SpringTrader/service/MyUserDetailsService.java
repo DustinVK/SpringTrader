@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.springtrader.SpringTrader.model.internal.user.User;
-import com.springtrader.SpringTrader.model.internal.user.UserDAO;
-import com.springtrader.SpringTrader.model.internal.user.UserPrincipal;
+import com.springtrader.SpringTrader.model.user.User;
+import com.springtrader.SpringTrader.model.user.UserDAO;
+import com.springtrader.SpringTrader.model.user.UserPrincipal;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService{

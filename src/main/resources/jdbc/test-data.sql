@@ -25,7 +25,7 @@ INSERT INTO userStocks (username, symbol, amount, price, stamp)
 	values ('user', 'TSLA', 3, 611.29, '2021-03-29 18:47:52.69');
 	
 INSERT INTO userStocks (username, symbol, amount, price, stamp)
-	values ('user', 'ZZZ', 4, 320.7, '2021-04-29 18:47:52.69');
+	values ('user', 'GME', 4, 320.7, '2021-04-29 18:47:52.69');
 	
 INSERT INTO userStocks (username, symbol, amount, price, stamp)
 	values ('user', 'TSLA', 4, 703.94, '2021-04-04 18:47:52.69');

@@ -7,12 +7,13 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.springtrader.SpringTrader.model.internal.balance.Balance;
-import com.springtrader.SpringTrader.model.internal.balance.BalanceDAO;
-import com.springtrader.SpringTrader.model.internal.user.UserDAO;
+import com.springtrader.SpringTrader.model.balance.Balance;
+import com.springtrader.SpringTrader.model.balance.BalanceDAO;
+import com.springtrader.SpringTrader.model.user.UserDAO;
 
-@Component
+@Service
 public class BalanceService {
 	
 	@Autowired

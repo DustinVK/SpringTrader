@@ -1,4 +1,4 @@
-package com.springtrader.SpringTrader.model.internal.userStock;
+package com.springtrader.SpringTrader.model.userStock;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;

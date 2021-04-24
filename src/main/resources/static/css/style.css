@@ -157,6 +157,7 @@ aside {
 
 .stock-header {
     color: #010101;
+    text-align:center;
 }
 
 .stock-header:hover {
@@ -175,6 +176,11 @@ aside {
 	color: #010101
 }
 
-.result-container {
-	text-align: center;
+#result-table {
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.folio-table-header {
+	text-align:center;
 }

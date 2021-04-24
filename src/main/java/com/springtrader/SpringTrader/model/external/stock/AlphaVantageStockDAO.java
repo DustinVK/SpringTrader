@@ -26,7 +26,8 @@ public class AlphaVantageStockDAO implements IStockDAO {
 	public Stock getStockQuote(String symbol) throws JSONException {
 		final String uri = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+symbol+"&apikey="+key;
 		String rawResult = restTemplate.getForObject(uri, String.class);
-		 Stock stockDTO = new Stock();
+		Stock stockDTO = new Stock();
+		System.out.println(rawResult);
 		try {
 			JSONObject stockJSON = new JSONObject(rawResult).getJSONObject("Global Quote");
 			   // System.out.println(rawResult);
@@ -37,6 +38,7 @@ public class AlphaVantageStockDAO implements IStockDAO {
 		}
 		catch(Exception e) {
 			System.out.println("Error Getting Stock Quote for: "+symbol);
+			System.out.println(e);
 		}
 	    
 		return stockDTO;

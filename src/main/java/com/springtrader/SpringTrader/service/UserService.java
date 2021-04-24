@@ -6,13 +6,14 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.springtrader.SpringTrader.model.internal.user.User;
-import com.springtrader.SpringTrader.model.internal.user.UserDAO;
-import com.springtrader.SpringTrader.model.internal.userStock.UserStock;
-import com.springtrader.SpringTrader.model.internal.userStock.UserStockDAO;
+import com.springtrader.SpringTrader.model.user.User;
+import com.springtrader.SpringTrader.model.user.UserDAO;
+import com.springtrader.SpringTrader.model.userStock.UserStock;
+import com.springtrader.SpringTrader.model.userStock.UserStockDAO;
 
-@Component
+@Service
 public class UserService {
 	private UserStockDAO userStockDAO;
 	
