@@ -9,7 +9,7 @@ import com.springtrader.SpringTrader.model.external.stock.IStockDAO;
 import com.springtrader.SpringTrader.model.external.stock.Stock;
 
 @Service
-public class StockService {
+public class ExternalStockService {
 	
 	@Autowired
 	@Qualifier("mockStock")

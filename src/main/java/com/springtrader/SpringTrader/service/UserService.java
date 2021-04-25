@@ -30,10 +30,10 @@ public class UserService {
 		return userDAO.getUserByUsername(username);
 	}
 	
-	public List<UserStock> getUserStocks(String username) {
+	public List<UserStock> getUserPortfolioStocks(String username, long portfolioId) {
 		userStockDAO = new UserStockDAO();
 		userStockDAO.setDataSource(dataSource);
-		return userStockDAO.getUserStocks(username);
+		return userStockDAO.getUserPortfolioStocks(username, portfolioId);
 	}
 	
 }

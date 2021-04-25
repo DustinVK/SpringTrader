@@ -1,23 +1,17 @@
 <H1>Portfolio</H1>
-
-<span th:text="${test}" />
 <table id="result-table">
 <tr>
-<tr><th></th>
-	<th class="folio-table-header">Stocks</th>
-	<th></th>
-</tr>
 	<th>Symbol | </th>
 	<th>Amount</th>
 	<th>| Price </th>
+	<th>| Holdings </th>
 </tr>
 
 
-<tr th:each="userStock : ${userStocks}">
-	<td th:text="${userStock.symbol}">|</td>
-	<td th:text="${userStock.amount}"></td>
-	<td th:text="${userStock.price}"></td>
-	
+<tr th:each="portfolio,j : ${portfolios}">
+	<th th:text="${portfolio.name}"></th>
+	<tr th:each="list,i : ${list}">
+		<th th:text="${list.symbol}"></th>
 </tr>
 
 </table>

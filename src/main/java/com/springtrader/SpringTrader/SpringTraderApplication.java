@@ -19,7 +19,7 @@ import com.springtrader.SpringTrader.model.external.stock.AlphaVantageStockDAO;
 import com.springtrader.SpringTrader.model.user.UserDAO;
 import com.springtrader.SpringTrader.service.BalanceService;
 import com.springtrader.SpringTrader.service.SearchService;
-import com.springtrader.SpringTrader.service.StockService;
+import com.springtrader.SpringTrader.service.ExternalStockService;
 import com.springtrader.SpringTrader.service.UserStockService;
 
 @SpringBootApplication

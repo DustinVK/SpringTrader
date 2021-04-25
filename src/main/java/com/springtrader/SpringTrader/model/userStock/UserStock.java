@@ -6,11 +6,18 @@ import java.util.Comparator;
 
 public class UserStock {
 	private String username;
+	private long portfolioId;
 	private String symbol;
 	private BigDecimal amount;
 	private BigDecimal price;
 	private Timestamp stamp;
 	
+	public long getPortfolioId() {
+		return portfolioId;
+	}
+	public void setPortfolioId(long portfolioId) {
+		this.portfolioId = portfolioId;
+	}
 	public String getUsername() {
 		return username;
 	}

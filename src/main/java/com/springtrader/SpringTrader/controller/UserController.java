@@ -19,13 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springtrader.SpringTrader.model.balance.Balance;
 import com.springtrader.SpringTrader.model.external.stock.IStockDAO;
+import com.springtrader.SpringTrader.model.portfolio.Portfolio;
 import com.springtrader.SpringTrader.model.portfolio.PortfolioRow;
 import com.springtrader.SpringTrader.model.user.User;
 import com.springtrader.SpringTrader.model.user.UserPrincipal;
 import com.springtrader.SpringTrader.model.userStock.UserStock;
 import com.springtrader.SpringTrader.service.BalanceService;
 import com.springtrader.SpringTrader.service.PortfolioService;
-import com.springtrader.SpringTrader.service.StockService;
+import com.springtrader.SpringTrader.service.ExternalStockService;
 import com.springtrader.SpringTrader.service.UserStockService;
 
 @Controller
@@ -37,7 +38,7 @@ public class UserController {
 	UserStockService uss;
 	
 	@Autowired 
-	StockService stockService;
+	ExternalStockService stockService;
 	
 	@RequestMapping("/users/{username}")
     public String getUserInfo(@PathVariable("username") String userName, Authentication auth, Model model){
@@ -45,14 +46,7 @@ public class UserController {
 	  return "user";
     }
 	
-   @RequestMapping("/users/{username}/portfolio")
-    public String getPortfolio(@PathVariable("username") String userName, Model model) {
-	  // List<UserStock> list = uss.getLatestUserStocks(userName);
-	   List<PortfolioRow> list = portfolioService.getPortfolio(userName);
-	   model.addAttribute("userStocks", list);
-	   model.addAttribute("test", 12345);
-       return "portfolio";
-    }
+
    
 //  @GetMapping("/listHeaders")
 //  public ResponseEntity<String> listAllHeaders(

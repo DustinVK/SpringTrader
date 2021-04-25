@@ -18,6 +18,8 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
    <script type="text/javascript" th:src="@{./vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+    <script type="text/javascript" th:src="@{/js/nav.js}"></script>
+    
 
 </head>
 

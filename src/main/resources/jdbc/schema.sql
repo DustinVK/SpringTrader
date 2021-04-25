@@ -25,16 +25,22 @@ create table balances (
     stamp timestamp not null,
     constraint fk_balances_users foreign key(username) references users(username)
 );
-create unique index ix_user_balance on balances (username,stamp);
 
+create table userPortfolios(
+	id bigint unique not null,
+	name varchar(30) not null,
+	username varchar_ignorecase(50) not null,
+	foreign key (username) references users(username)
+);
 
-create table userStocks (
-    username varchar_ignorecase(50) not null,
+create table portfolios ( 
+	username varchar_ignorecase(50) not null,
+    id bigint not null,
     symbol varchar(10) not null,
     amount decimal(19,4) not null,
     price decimal(19,4) not null,
     stamp timestamp not null,
-    constraint fk_user_stocks foreign key(username) references users(username)
+    foreign key (username) references users(username),
+   	foreign key (id) references userPortfolios(id)
 );
-create unique index ix_user_stock on userStocks (username,stamp);
 

@@ -1,6 +1,8 @@
 package com.springtrader.SpringTrader.model.userStock;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -12,10 +14,11 @@ public class UserStockDAO {
         this.jdbc= new JdbcTemplate(dataSource);
      }
     
-    public List<UserStock> getUserStocks(String username){
-    	final String sql = "SELECT * FROM userStocks WHERE username = ? " +
+    public List<UserStock> getUserPortfolioStocks(String username, long portfolioId){
+    	final String sql = "SELECT * FROM portfolios WHERE username = ? AND id = ?" +
 				"ORDER BY stamp DESC ";		
-		return jdbc.query(sql, new UserStockRowMapper(), username);
+		return jdbc.query(sql, new UserStockRowMapper(), username, portfolioId);
     }
-    
+//    
+
 }

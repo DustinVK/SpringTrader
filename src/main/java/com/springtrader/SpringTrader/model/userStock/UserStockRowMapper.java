@@ -10,11 +10,12 @@ public class UserStockRowMapper implements RowMapper<UserStock>{
 	@Override
 	public UserStock mapRow(ResultSet rs, int rowNum) throws SQLException {
 		UserStock userStock = new UserStock();
-		userStock.setUsername(rs.getString("username"));
-		userStock.setSymbol(rs.getNString("symbol"));
-		userStock.setAmount(rs.getBigDecimal("amount"));
-		userStock.setPrice(rs.getBigDecimal("price"));
-		userStock.setStamp(rs.getTimestamp("stamp"));
+//		userStock.setUsername(rs.getString("username"));
+//		userStock.setPortfolioId(rs.getLong("id"));
+//		userStock.setSymbol(rs.getNString("symbol"));
+//		userStock.setAmount(rs.getBigDecimal("amount"));
+//		userStock.setPrice(rs.getBigDecimal("price"));
+//		userStock.setStamp(rs.getTimestamp("stamp"));
 		return userStock;
 	}
 

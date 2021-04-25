@@ -4,7 +4,7 @@ $(document).ready(function(){
 		
 	} else {
 		if(sessionStorage.getItem("balance") == null){
-			location.reload()
+		//	location.reload()
 			getBalance();
 		}
 		
@@ -19,12 +19,11 @@ $(document).ready(function(){
 		getStock(symbol);
 	}
 	else if(view === "search"){
-		let searchEntry = getQueryStringVariable('entry');
+		var searchEntry = getQueryStringVariable('entry');
 		stockSearch(searchEntry);
 	}
-	else if(view === "portfolio"){
-		let id = getQueryStringVariable('id');
-		getPortfolio(id);
+	else if(view === "portfolios"){
+		getPortfolios();
 	}
 });
 
@@ -37,7 +36,7 @@ var getQueryStringVariable = function ( field, url ) {
 	};
 	
 function showLoggedInMenu(){
-	let name = sessionStorage.getItem("uname");
+	var name = sessionStorage.getItem("uname");
 	var menu = "<a class='nav-link' href='/'>Home</a>" +
 		"<a class='nav-link' href='/'>Portfolio</a>" +
 		"<a class='nav-link' href='/stock'>Stocks</a>" +
@@ -65,8 +64,8 @@ function getBalance(){
 }
 
 function login(){
-		let username = document.getElementById('username').value;
-		let password = document.getElementById('password').value;
+		var username = document.getElementById('username').value;
+		var password = document.getElementById('password').value;
 		var parms = { username:username, password:password };
 		$.ajax({
 		url: "./authenticate",
@@ -86,7 +85,7 @@ function login(){
 }
 
 function getUser(){
-		let username = sessionStorage.getItem("uname");
+		var username = sessionStorage.getItem("uname");
 		$.ajax({
 		url: "./users/"+username,
 		type: 'GET',
@@ -121,12 +120,14 @@ window.onclick = function(event) {
 
 
 function useSearchBarButton(){
-	let input = document.getElementById('searchbar').value;
+	var input = document.getElementById('searchbar').value;
 	location.replace("./?view=search&entry="+input);
 }
 	
 function stockSearch(input){
 	$("#content-placeholder").empty();
+		$("#pageBody").empty();
+
 	console.log(input);
 	$.ajax({
 		url: "./search/"+input,
@@ -160,6 +161,8 @@ function stockSearch(input){
 
 function getStock(symbol){
 	$("#pageBody").empty();
+	$("#content-placeholder").empty();
+
 	$.ajax({
 		url: "./stock/"+symbol,
 		type: 'GET',
@@ -180,31 +183,37 @@ function getStock(symbol){
 		
 }
 
-function usePortfolioButton(){
-	location.replace("./?view=portfolio");
-	getPortfolio();
+function usePortfoliosButton(){
+	location.replace("./?view=portfolios");
 }
 
-  function getPortfolio(){
-		$("#pagebody").empty();
-		$("#content-placeholder").empty();
-
-		let username = sessionStorage.getItem("uname");
+function getPortfolios(){
+		$("#pageBody").empty();
+		var username = sessionStorage.getItem("uname");
 		$.ajax({
-		url: "./users/"+username+"/portfolio",
+		url: "./users/"+username+"/portfolios",
 		type: 'GET',
 		headers: {
-  		"Authorization": "Bearer "+sessionStorage.getItem("token")
-		},
-		dataType : "text",
-      contentType: "application/json",
+    		"Authorization": "Bearer "+sessionStorage.getItem("token")
+  		},
+		dataType : "json",
+        contentType: "application/json",
 		}).fail(function(response) {
 			console.log(response);
-			$("#login-message").append("Invalid portfolio");
+			$("#login-message").append("Invalid xxx");
 			
 		}).done(function(response) {
-			$("#content-placeholder").empty();
-			$("#pagebody").empty();
-			$("#content-placeholder").append(response);
+			var portfolio = "";
+					$.each(response, function(key, value) {
+						portfolio += " <div class='portfolio-card'><p class='p-header'>"+value.metaData.name+"   <i class='fa fa-cog' aria-hidden='true'></i></p>"+
+						"<table><tr><th>Symbol</th><th>Price</th><th>Amount</th><th>Holdings</th><tr>";
+						$.each(value.list, function(key, value) {
+							console.log(value);
+							portfolio += "<table class='p-row'><tr><td><a class='stock-header' href='./?view=stock&symbol="+value.symbol+ "'>" + value.symbol + "</a></td><td>"+value.price+"</td><td>"+value.amount+"</td><td>$"+value.holdings+"</td><tr>";
+						});
+						portfolio += "</table></div>";
+
+					});
+						$("#pageBody").append(portfolio);
 		});
 }

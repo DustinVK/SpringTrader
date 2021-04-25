@@ -27,11 +27,8 @@ public class AlphaVantageStockDAO implements IStockDAO {
 		final String uri = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+symbol+"&apikey="+key;
 		String rawResult = restTemplate.getForObject(uri, String.class);
 		Stock stockDTO = new Stock();
-		System.out.println(rawResult);
 		try {
 			JSONObject stockJSON = new JSONObject(rawResult).getJSONObject("Global Quote");
-			   // System.out.println(rawResult);
-			   
 			    stockDTO.setChangePercent(stockJSON.getString("10. change percent"));
 			    stockDTO.setPrice(stockJSON.getString("05. price"));
 			    stockDTO.setSymbol(stockJSON.getString("01. symbol"));

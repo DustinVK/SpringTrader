@@ -1,5 +1,6 @@
 package com.springtrader.SpringTrader.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.springtrader.SpringTrader.model.portfolio.PortfolioRow;
 import com.springtrader.SpringTrader.model.user.User;
 import com.springtrader.SpringTrader.model.user.UserDAO;
 import com.springtrader.SpringTrader.model.userStock.UserStock;
@@ -24,15 +26,18 @@ public class UserStockService {
 	@Autowired 
 	DataSource dataSource;
 	
-	public List<UserStock> getUserStocks(String username) {
+	@Autowired
+	ExternalStockService stockService;
+	
+	public List<UserStock> getUserPortfolioStocks(String username, long portfolioId) {
 		userStockDAO = new UserStockDAO();
 		userStockDAO.setDataSource(dataSource);
-		return userStockDAO.getUserStocks(username);
+		return userStockDAO.getUserPortfolioStocks(username, portfolioId);
 	}
 	
-	public List<UserStock> getLatestUserStocks(String username) {
+	public List<UserStock> getLatestUserPortfolioStocks(String username, long portfolioId) {
 
-		List<UserStock> list = getUserStocks(username);
+		List<UserStock> list = getUserPortfolioStocks(username, portfolioId);
 		if(list.isEmpty()) {
 			System.out.println("Empty userstock list....");
 			return list;
@@ -63,6 +68,31 @@ public class UserStockService {
 			}
 		}
 	}
-	
+//	
+//	public List<PortfolioRow>getPortfolio(String username, long portfolioId){
+//		List<UserStock> userStockList = getLatestUserPortfolioStocks(username, portfolioId);
+//		List<PortfolioRow> portfolio = getPortfolioFromUserStocks(userStockList);	
+//		return portfolio;
+//	}
+//
+//	private List<PortfolioRow> getPortfolioFromUserStocks(List<UserStock> userStockList) {
+//		List<PortfolioRow> portfolio = new ArrayList<PortfolioRow>();
+//		PortfolioRow row;
+//		for(UserStock userStock : userStockList) {
+//			String symbol = userStock.getSymbol();
+//			String priceStr = stockService.getStockQuote(symbol).getPrice();
+//			BigDecimal price = new BigDecimal(priceStr);
+//			row = new PortfolioRow();
+//			row.setPrice(price);
+//			row.setSymbol(symbol);
+//			row.setAmount(userStock.getAmount());
+//			row.setHoldings(calculateHoldings(price, row));	
+//			portfolio.add(row);
+//		}
+//		return portfolio;
+//	}
+//
+//
+//	
 	
 }
