@@ -203,7 +203,7 @@ function getPortfolios(){
 			$("#login-message").append("Invalid xxx");
 			
 		}).done(function(response) {
-			var portfolio = "";
+			var portfolio = "<h3 id='portfolio-main-header'>"+sessionStorage.getItem("uname")+"'s Portfolios</h3>";
 					$.each(response, function(key, value) {
 						portfolio += " <div class='portfolio-card'><p class='p-header'>"+value.metaData.name+"   <i class='fa fa-cog' aria-hidden='true'></i></p>"+
 						"<table><tr><th>Symbol</th><th>Price</th><th>Amount</th><th>Holdings</th><tr>";
