@@ -19,7 +19,7 @@
   var menu = "<a class='nav-link' href='./'>Home</a>";
 	
   let name = sessionStorage.getItem("uname");
-  let balance = sessionStorage.getItem("balance");
+
   if(name != null){
 		menu += "<button class='nav-link-button' onclick='usePortfoliosButton()'>Portfolios</button>" +
 		"<li class='dropdown'>" +
@@ -31,9 +31,7 @@
         "<li><a href='#'><button class='btn logout-btn' onclick='logout()'>Logout</button></a></li>" +
         "</ul>"+
       	"</li>";
-      	if(balance != null){
-      		menu +="<div class='balance'>$"+balance+ "</div>";
-      	} 
+ 
 			
   } else {
 	  $("#login-placeholder").load("./includes/login-form.html");

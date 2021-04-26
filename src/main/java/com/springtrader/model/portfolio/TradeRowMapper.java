@@ -6,17 +6,17 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-public class PortfolioRowMapper implements RowMapper<PortfolioRow>{
+public class TradeRowMapper implements RowMapper<TradeRow>{
 
 	@Override
-	public PortfolioRow mapRow(ResultSet rs, int rowNum) throws SQLException {
-		PortfolioRow row = new PortfolioRow();
+	public TradeRow mapRow(ResultSet rs, int rowNum) throws SQLException {
+		TradeRow row = new TradeRow();
 		BigDecimal amount = rs.getBigDecimal("amount");
 		BigDecimal price = rs.getBigDecimal("price");
 		row.setAmount(amount);
 		row.setPrice(price);
 		row.setSymbol(rs.getString("symbol"));
-	
+		row.setStamp(rs.getTimestamp("stamp"));
 		//row.setHoldings(calculateHoldings(price, amount));
 		return row;
 	}

@@ -1,16 +1,7 @@
 package com.springtrader.SpringTrader;
 
-import javax.sql.DataSource;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.test.context.jdbc.Sql;
-
-import com.springtrader.model.user.stock.UserStockDAO;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @JdbcTest
 class UserStockDAOTest {

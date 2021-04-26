@@ -3,12 +3,11 @@ package com.springtrader.model.portfolio;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-public class PortfolioRow {
+public class TradeRow {
 	private String symbol;
 	private BigDecimal amount;
 	private BigDecimal price;
-	private BigDecimal holdings;
-
+	private Timestamp stamp;
 	
 	public String getSymbol() {
 		return symbol;
@@ -34,16 +33,10 @@ public class PortfolioRow {
 //	public void setHoldings(BigDecimal holdings) {
 //		this.holdings = holdings;
 //	}
-//	public Timestamp getStamp() {
-//		return stamp;
-//	}
-//	public void setStamp(Timestamp stamp) {
-//		this.stamp = stamp;
-//	}
-	public BigDecimal getHoldings() {
-		return holdings;
+	public Timestamp getStamp() {
+		return stamp;
 	}
-	public void setHoldings(BigDecimal holdings) {
-		this.holdings = holdings;
+	public void setStamp(Timestamp stamp) {
+		this.stamp = stamp;
 	}
 }

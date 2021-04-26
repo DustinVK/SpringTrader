@@ -135,9 +135,17 @@ aside {
 	border-color: #40916c;
 }
 
-.logout-btn:hover {
-    background-color: #010101;
+.dropdown-menu{
+	background-color:#010101;
+}
+
+.logout-btn {
     color: #f0ece2;
+}
+
+.logout-btn:hover {
+    background-color: #f0ece2;
+    color: #010101;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -201,7 +209,7 @@ aside {
   }
 
   table {
-  	width: 80%;
+  	width: 100%;
 	margin-left:auto;
 	margin-right:auto;
   }
@@ -214,11 +222,11 @@ th, td {
 }
 th {
   text-align: center;
-  border: 1px solid #000;
+
   border-collapse: collapse;
 }
 
-.p-row:nth-child(even) {
+.p-row:nth-child(odd) {
   background-color: #f0ece2;
 }
 
@@ -226,17 +234,42 @@ th {
 	  border: 1px solid #000;
       border-collapse: collapse;
       margin-bottom:20px;
-      padding:10px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin-left:auto;
+      margin-right:auto;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      width:78%;
+      padding:20px;
 }
 
 .p-header{
 	text-align:left;
-	padding-left:8%;
+	padding-left:10%;
+	background-color:#010101;
+	color:#f0ece2;
+	font-size: large;
+	margin-bottom:10px;
 }
 
 #portfolio-main-header{
 	text-align:left;
 	margin-top: 2%;
 	margin-bottom:1%;
+}
+
+#p-trash{
+	margin-right:100%;
+	background-color: #b52222;
+	border-color: #b52222;
+}
+
+#p-trash:hover {
+	background-color:#631212;
+		border-color: #631212;
+}
+.column-key{
+	border-bottom:2px solid #6e6e6e;
+}
+
+#add-stock{
+	margin-right: auto;
 }

@@ -1,6 +1,5 @@
 package com.springtrader.model.portfolio;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -10,14 +9,14 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
-import com.springtrader.model.user.stock.UserStock;
-import com.springtrader.service.UserStockService;
+import com.springtrader.util.PortfolioUtil;
 
+@Component
 public class PortfolioDAO {
 	
-	@Autowired
-	UserStockService uss;
+	private PortfolioUtil portfolioUtil = new PortfolioUtil();
 
 	private JdbcTemplate jdbc;
 	
@@ -36,26 +35,41 @@ public class PortfolioDAO {
 		for(PortfolioMetaData meta : portfolioList) {
 			Portfolio portfolio = new Portfolio();
 			Long id = meta.getId();
-			List<PortfolioRow> rows = jdbc.query(sql, new PortfolioRowMapper(), username, id); // TODO: probably dont need username here
-			portfolio.setMetaData(meta);
-			portfolio.setList(getUniqueSymbolPortfolioRows(rows));
+			List<TradeRow> rows = jdbc.query(sql, new TradeRowMapper(), username, id); 
+			portfolio = portfolioUtil.getPortfolio(rows);
+			portfolio.getMetaData().setName(meta.getName());
+			portfolio.getMetaData().setId(id);
+			portfolio.getMetaData().setUsername(meta.getUsername());
+	
+
 			list.add(portfolio);
 		}
 		
 		return list;
     }
     
-	private List<PortfolioRow> getUniqueSymbolPortfolioRows(List<PortfolioRow> list) {
-		List<PortfolioRow> returnList = new ArrayList<>();
-		HashSet<String> hSet = new HashSet<String>();
-		for(PortfolioRow row : list) {
-			if(!hSet.contains(row.getSymbol())) {
-				returnList.add(row);
-				hSet.add(row.getSymbol());
-			}
-		}
-		return returnList;
-	}
+    public String addPortfolio(String username, String portfolioName) {
+    	String sql = "INSERT INTO userPortfolios(username, name) VALUES (?, ?)";
+    	int result = jdbc.update(sql, username, portfolioName);
+    	if(result == 0) {
+    		return "Something went wrong trying to add portfolio :(";
+    	}
+    	return "Portfolio Added!";
+    }
+    
+//	private List<PortfolioRow> getUniqueSymbolPortfolioRows(List<PortfolioRow> list) {
+//		List<PortfolioRow> returnList = new ArrayList<>();
+//		HashSet<String> hSet = new HashSet<String>();
+//		for(PortfolioRow row : list) {
+//			if(!hSet.contains(row.getSymbol())) {
+//				returnList.add(row);
+//				hSet.add(row.getSymbol());
+//			}
+//		}
+//		return returnList;
+//	}
+	
+	
     
 //    public List<PortfolioRow>getPortfolio(String username, long portfolioId){
 //		List<UserStock> userStockList = getLatestUserPortfolioStocks(username, portfolioId);

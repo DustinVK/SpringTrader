@@ -27,7 +27,7 @@ create table balances (
 );
 
 create table userPortfolios(
-	id bigint unique not null,
+	id bigint not null auto_increment,
 	name varchar(30) not null,
 	username varchar_ignorecase(50) not null,
 	foreign key (username) references users(username)

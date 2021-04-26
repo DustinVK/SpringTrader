@@ -1,6 +1,5 @@
 package com.springtrader.model.user;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserDAO {
+	@SuppressWarnings("unused")
 	@Autowired
 	private DataSource dataSource;
 	

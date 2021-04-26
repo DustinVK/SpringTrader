@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
-
 import com.springtrader.model.external.search.ISearchDAO;
 import com.springtrader.model.external.search.SearchResult;
 
@@ -24,6 +21,7 @@ public class SearchService {
 		List<SearchResult> list = searchDaos[MOCK].search(entry);
 		List<SearchResult> returnList = new ArrayList<SearchResult>();
 		for(int i=0;i<list.size();i++) {
+			System.out.println(list.get(i).getName());
 			if(list.get(i).getCurrency().equals("USD")) {
 				returnList.add(list.get(i));
 			}
