@@ -36,10 +36,14 @@ public class PortfolioDAO {
 			Portfolio portfolio = new Portfolio();
 			Long id = meta.getId();
 			List<TradeRow> rows = jdbc.query(sql, new TradeRowMapper(), username, id); 
+			
 			portfolio = portfolioUtil.getPortfolio(rows);
 			portfolio.getMetaData().setName(meta.getName());
 			portfolio.getMetaData().setId(id);
 			portfolio.getMetaData().setUsername(meta.getUsername());
+			
+			
+			
 	
 
 			list.add(portfolio);

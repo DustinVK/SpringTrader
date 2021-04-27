@@ -181,15 +181,24 @@ function getPortfolios(){
 		}).done(function(response) {
 			var portfolio = "<h3 id='portfolio-main-header'>"+sessionStorage.getItem("uname")+"'s Portfolios</h3>";
 					$.each(response, function(key, value) {
-												console.log(value);
+						var pl = value.metaData.cashChange;
+						var percent =value.metaData.percentChange;
+						if(pl < 0) {
+							pl = "<th id='pl-red'>Loss: -$"+(value.metaData.cashChange *-1).toFixed(2)+"</th>";
+							percent = "<th id='pl-red'> "+value.metaData.percentChange.toFixed(2)+"%</th>";
+						}
+						else{
+							pl = "<th id='pl-green'>Profit: +$"+value.metaData.cashChange.toFixed(2)+"</th>";
+							percent = "<th id='pct-green'> +"+value.metaData.percentChange.toFixed(2)+"%</th>";
+						}
 					
 						portfolio += " <div class='portfolio-card'><table class='p-header'><tr><th>"+
-						"<button class='btn btn-info btnround' id='p-trash' type='submit' onclick='deletePortfolio()'><i class='fa fa-times' aria-hidden='true'></i></button></th><th colspan='2'>"+value.metaData.name+"</th><th></th></tr></table>"+
+						"<button class='btn btn-info btnround' id='p-trash' type='submit' onclick='deletePortfolio()'><i class='fa fa-times' aria-hidden='true'></i></button></th><th colspan='2'>"+value.metaData.name+"</th><th>"+percent+"</table>"+
 						"<table class='column-key'><tr><th>Symbol</th><th>Price</th><th>Amount</th><th>Holdings</th><tr>";
 						$.each(value.list, function(key, value) {
 							portfolio += "<table class='p-row'><tr><td><a class='stock-header' href='./?view=stock&symbol="+value.symbol+ "'>" + value.symbol + "</a></td><td>"+value.price+"</td><td>"+value.amount+"</td><td>$"+value.holdings+"</td><tr>";
 						});
-						portfolio += "</table><table><tr><th>View Trades</th><th>Principal:</th><th>Total:</th><th>Profit/Loss:</th></table>" +
+						portfolio += "</table><table><tr><th>Cash in: $"+value.metaData.cashIn.toFixed(2)+"</th><th>Cash out: $"+value.metaData.cashOut.toFixed(2)+"</th>"+pl+"<th>Total: $"+value.metaData.totalHoldings.toFixed(2)+"</th></table>" +
 						"</table><table><tr><th></th><th></th><th></th><th><button class='btn btn-info btnround' id='add-stock' type='submit' onclick=''><i class='fa fa-plus' aria-hidden='true'></i> Add trade</button></th></tr></table></div>";
 
 					});

@@ -251,7 +251,7 @@ th {
 }
 
 #portfolio-main-header{
-	text-align:left;
+	text-align:center;
 	margin-top: 2%;
 	margin-bottom:1%;
 }
@@ -272,4 +272,16 @@ th {
 
 #add-stock{
 	margin-right: auto;
+}
+
+#pl-red{
+	color:#b52222;
+}
+
+#pl-green{
+	color:#40916c;
+}
+
+#pct-green{
+	color:#52b788;
 }

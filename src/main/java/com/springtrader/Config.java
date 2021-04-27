@@ -2,8 +2,6 @@ package com.springtrader;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,11 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.springtrader.model.external.search.AlphaVantageSearchDAO;
 import com.springtrader.model.external.search.ISearchDAO;
-import com.springtrader.model.external.stock.IStockDAO;
-import com.springtrader.model.external.stock.StockMockDAO;
-import com.springtrader.model.portfolio.PortfolioDAO;
 import com.springtrader.service.SearchService;
-import com.springtrader.util.PortfolioUtil;
 
 @Configuration
 @ComponentScan

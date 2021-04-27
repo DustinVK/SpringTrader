@@ -25,7 +25,7 @@ INSERT INTO balances (username, amount, stamp)
 	values ('user', 166.13, '2021-03-29 18:47:52.69');
 	
 INSERT INTO userPortfolios(username, name)
-	values ('user', 'Test Portfolio');
+	values ('user', 'Meme Stocks');
 	
 INSERT INTO portfolios (username, id, symbol, amount, price, stamp)
 	values ('user', 1, 'TSLA', 3, 611.29, '2021-03-29 18:47:52.69');
@@ -47,4 +47,7 @@ INSERT INTO portfolios (username, id, symbol, amount, price, stamp)
 	
 INSERT INTO portfolios (username, id, symbol, amount, price, stamp)
 	values ('user', 2, 'NVDA', -2, 554.94, '2021-04-04 18:47:52.69');
+	
+INSERT INTO portfolios (username, id, symbol, amount, price, stamp)
+	values ('user', 2, 'MSFT', 1, 248.40, '2021-04-23 18:47:52.69');
 
