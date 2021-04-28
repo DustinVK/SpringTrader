@@ -3,6 +3,6 @@ package com.springtrader.model.external.stock;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface IStockDAO {
+public interface IStock {
 	Stock getStockQuote(String symbol);
 }

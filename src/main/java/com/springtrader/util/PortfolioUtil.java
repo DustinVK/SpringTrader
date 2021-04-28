@@ -7,22 +7,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.springtrader.model.external.stock.IStockDAO;
-import com.springtrader.model.external.stock.StockMockDAO;
+import com.springtrader.model.external.stock.IStock;
+import com.springtrader.model.external.stock.MockStock;
 import com.springtrader.model.portfolio.Portfolio;
 import com.springtrader.model.portfolio.PortfolioMetaData;
 import com.springtrader.model.portfolio.PortfolioRow;
 import com.springtrader.model.portfolio.TradeRow;
+import com.springtrader.service.ExternalStockService;
 
-@Service
+@Component
 public class PortfolioUtil {
 	
 	final String CASH_IN = "getUserPortfolioCashIn";
 	final String CASH_OUT = "getUserPortfolioCashOut";
-	
-	private IStockDAO stockDAO = new StockMockDAO();
+	private int index = 0;
+
+	private ExternalStockService stockService;
+
+	public void setStockService(ExternalStockService stockService) {
+		this.stockService = stockService;
+	}
 
 	public Portfolio getPortfolio(List<TradeRow> list) {		
 		HashMap<String, BigDecimal> map = getPortfolioHashMap(list);
@@ -99,7 +108,7 @@ public class PortfolioUtil {
 			String symbol = element.getKey();
 			row.setSymbol(symbol);
 			row.setAmount(map.get(symbol));
-			BigDecimal price = new BigDecimal(stockDAO.getStockQuote(symbol).getPrice());
+			BigDecimal price = new BigDecimal(stockService.getStockQuote(symbol).getPrice());
 			row.setPrice(price);
 			row.setHoldings(getHoldings(map, symbol, price));
 			rowList.add(row);

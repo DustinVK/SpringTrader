@@ -11,8 +11,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
-import com.springtrader.model.external.search.AlphaVantageSearchDAO;
-import com.springtrader.model.external.search.ISearchDAO;
+
+import com.springtrader.model.external.search.AlphaVantageSearch;
+import com.springtrader.model.external.search.ISearch;
+import com.springtrader.service.ExternalStockService;
 import com.springtrader.service.SearchService;
 
 @Configuration
@@ -37,6 +39,11 @@ public class Config {
 	}
 	
 	@Bean
+	public ExternalStockService getStockService() {
+		return new ExternalStockService();
+	}
+	
+	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 		//return NoOpPasswordEncoder.getInstance(); // plain text 'encoder' for testing
@@ -44,9 +51,10 @@ public class Config {
 
 
 	@Bean
-	public ISearchDAO getAlphaSearchDAO() {
-		return new AlphaVantageSearchDAO();
+	public ISearch getAlphaSearchDAO() {
+		return new AlphaVantageSearch();
 	}
+	
 	
 
 	

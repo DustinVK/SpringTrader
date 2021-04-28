@@ -11,10 +11,10 @@ import org.springframework.web.client.RestTemplate;
 
 
 
-@Component
-@Qualifier("alphaVantageStock")
+//@Component
+//@Qualifier("alphaVantageStock")
 @PropertySource("application.properties")
-public class AlphaVantageStockDAO implements IStockDAO {
+public class AlphaVantageStock implements IStock {
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -32,6 +32,7 @@ public class AlphaVantageStockDAO implements IStockDAO {
 			    stockDTO.setChangePercent(stockJSON.getString("10. change percent"));
 			    stockDTO.setPrice(stockJSON.getString("05. price"));
 			    stockDTO.setSymbol(stockJSON.getString("01. symbol"));
+				System.out.println("Pulled stock data from AlphaVantage.co.");
 		}
 		catch(Exception e) {
 			System.out.println("Error Getting Stock Quote for: "+symbol);

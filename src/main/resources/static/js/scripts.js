@@ -193,13 +193,13 @@ function getPortfolios(){
 						}
 					
 						portfolio += " <div class='portfolio-card'><table class='p-header'><tr><th>"+
-						"<button class='btn btn-info btnround' id='p-trash' type='submit' onclick='deletePortfolio()'><i class='fa fa-times' aria-hidden='true'></i></button></th><th colspan='2'>"+value.metaData.name+"</th><th>"+percent+"</table>"+
+						"<button class='btn btn-info btnround' id='p-trash' type='submit' onclick='deletePortfolio("+value.metaData.id+")'><i class='fa fa-times' aria-hidden='true'></i></button></th><th colspan='2'>"+value.metaData.name+"</th><th>"+percent+"</table>"+
 						"<table class='column-key'><tr><th>Symbol</th><th>Price</th><th>Amount</th><th>Holdings</th><tr>";
 						$.each(value.list, function(key, value) {
 							portfolio += "<table class='p-row'><tr><td><a class='stock-header' href='./?view=stock&symbol="+value.symbol+ "'>" + value.symbol + "</a></td><td>"+value.price+"</td><td>"+value.amount+"</td><td>$"+value.holdings+"</td><tr>";
 						});
 						portfolio += "</table><table><tr><th>Cash in: $"+value.metaData.cashIn.toFixed(2)+"</th><th>Cash out: $"+value.metaData.cashOut.toFixed(2)+"</th>"+pl+"<th>Total: $"+value.metaData.totalHoldings.toFixed(2)+"</th></table>" +
-						"</table><table><tr><th></th><th></th><th></th><th><button class='btn btn-info btnround' id='add-stock' type='submit' onclick=''><i class='fa fa-plus' aria-hidden='true'></i> Add trade</button></th></tr></table></div>";
+						"</table><table><tr><th></th><th></th><th></th><th><button class='btn btn-info btnround' id='add-stock' type='submit' onclick=''><i class='fa fa-plus' aria-hidden='true'></i> Add Transaction</button></th></tr></table></div>";
 
 					});
 						portfolio += "<div class='portfolio-card'><button type='button' class='btn btn-info btn-round' data-toggle='modal' data-target='#portfolio-modal'><i class='fa fa-plus' aria-hidden='true'></i> New Portfolio</button><div>" ;
@@ -208,5 +208,44 @@ function getPortfolios(){
 }
 
 function addPortfolio(){
+	var uname = sessionStorage.getItem("uname");
+	var portfolioName = document.getElementById('portfolio-name').value;	
+	var parms = {portfolioName:portfolioName}
+	$.ajax({
+		url: "./users/"+uname+"/portfolios/",
+		type: 'POST',
+		headers: {
+    		"Authorization": "Bearer "+sessionStorage.getItem("token")
+  		},
+		dataType : "text",
+        contentType: "application/json",
+		data: JSON.stringify(parms)
+	}).fail(function(response) {
+		console.log(JSON.stringify(response));
+
+    }).done(function(response){
+		location.reload();
+	});
+}
+
+function deletePortfolio(id){
+	var confirmation = confirm("Delete Portfolio?");
+	if(confirmation){
+	var uname = sessionStorage.getItem("uname");
+	$.ajax({
+			url: "./users/"+uname+"/portfolios/"+id,
+			type: 'DELETE',
+			headers: {
+	    		"Authorization": "Bearer "+sessionStorage.getItem("token")
+	  		},
+			dataType : "text",
+	        contentType: "application/json",
+		}).fail(function(response) {
+			console.log(JSON.stringify(response));
 	
+	    }).done(function(response){
+			alert(response);
+			location.reload();
+		});
+	}
 }

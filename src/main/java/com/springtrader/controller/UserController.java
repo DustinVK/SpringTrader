@@ -23,16 +23,4 @@ public class UserController {
 	  return "user";
     }
 	
-
-   
-//  @GetMapping("/listHeaders")
-//  public ResponseEntity<String> listAllHeaders(
-//    @RequestHeader Map<String, String> headers) {
-//      headers.forEach((key, value) -> {
-//          System.out.println(String.format("Header '%s' = %s", key, value));
-//      });
-//
-//      return new ResponseEntity<String>(
-//        String.format("Listed %d headers", headers.size()), HttpStatus.OK);
-//  }
 }

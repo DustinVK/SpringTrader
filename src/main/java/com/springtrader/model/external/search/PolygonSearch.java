@@ -12,39 +12,37 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-
-@Component // comment component and qualifier out for real search 
-@Qualifier("AlphaVantage")
+@Component
+@Qualifier("PolygonSearch")
 @PropertySource("application.properties")
-public class AlphaVantageSearchDAO implements ISearchDAO {
-	
+public class PolygonSearch implements ISearch {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	@Value("${alphavantage.api.key}")
+	@Value("${polygon.api.key}")
 	private String key;
 
-	@Override
-	public List<SearchResult> search(String term) {
-		final String uri = "https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords="+term+"&apikey="+key;
+	
+	public List<SearchResult> search(String term){
+		final String uri = "https://api.polygon.io/v2/reference/tickers?search="+term+"&apiKey="+key;
 
 		List<SearchResult> allResults = new ArrayList<SearchResult>();
 		
 	    String rawResult = restTemplate.getForObject(uri, String.class);
 	    JSONObject root = new JSONObject(rawResult);
-
-	    JSONArray results = root.getJSONArray("bestMatches");
+	    JSONArray results = root.getJSONArray("tickers");
 	    
 	    for(int i =0; i < results.length();i++) {
 	    	JSONObject jsonResult = results.getJSONObject(i);
 	    	SearchResult result = new SearchResult();
-	    	result.setSymbol(jsonResult.getString("1. symbol"));
-	    	result.setName(jsonResult.getString("2. name"));
-	    	result.setCurrency(jsonResult.getString("8. currency"));
+	    	result.setSymbol(jsonResult.getString("ticker"));
+	    	result.setName(jsonResult.getString("name"));
+	    	result.setCurrency(jsonResult.getString("currency"));
 	    	allResults.add(result);
 	    }
-	    
+		System.out.println("Pulled search data from Polygon.io.");
+
 		return allResults;
 	}
-	
+
 }

@@ -28,6 +28,7 @@ public class AuthenticationController {
 	@Autowired
 	private JwtUtil jwtTokenUtil;
 	
+	// Using a class for API input
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 		try { 
@@ -41,10 +42,7 @@ public class AuthenticationController {
 		final UserDetails userDetails = userDetailsService
 				.loadUserByUsername(authenticationRequest.getUsername());
 		final String jwt = jwtTokenUtil.generateToken(userDetails);
-//		HttpHeaders headers = new HttpHeaders();
-//	    headers.add("Authorization", "Bearer "+jwt );
-//	    headers.add("Set-Cookie","Bearer");
-//		return ResponseEntity.ok().headers(headers).body("Logged in");
+
 	    return ResponseEntity.ok(new AuthenticationResponse(jwt));
 	}
 		

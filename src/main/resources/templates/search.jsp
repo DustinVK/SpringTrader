@@ -1,15 +1,11 @@
-<div class="result-container">
 
-<tr>
-	<th>Symbol</th>
-	<th>Name</th>
-	<th>Currency</th>
-</tr>
-<table id="results">
-
+			    	
+<div class='card mb-4'>
+<div class='card-body'>
 <tr th:each="result : ${results}">
-	<td th:text="${result.currency}"></td>
-</tr>
-
-</table>
+	<td th:text="${result.symbol}"></td>
+	<td th:text="${result.name}"></td>
+</tr>		              			              
 </div>
+</div>
+		

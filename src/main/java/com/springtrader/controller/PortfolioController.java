@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springtrader.model.portfolio.NewPortfolio;
 import com.springtrader.model.portfolio.Portfolio;
+import com.springtrader.model.portfolio.TradeRow;
 import com.springtrader.service.PortfolioService;
 
 @RestController
@@ -32,9 +33,15 @@ public class PortfolioController {
    }
    
    @DeleteMapping("/users/{username}/portfolios/{id}")
-   public String deletePortfolio(@PathVariable("username") String userName, @PathVariable("id") String id) {
-	//   List<Portfolio> portfolios = portfolioService.getPortfolios(userName);
-      return "delete " + id;
+   public String deletePortfolio(@PathVariable("username") String username, @PathVariable("id") long id) {
+      return portfolioService.deletePortfolio(id, username);
    }
+   
+   @PostMapping("/users/{username}/portfolios/{id}")
+   public String addTransaction(@PathVariable("username") String username, @PathVariable("id") long id, @RequestBody TradeRow transaction) {
+      return portfolioService.addTransaction(id, username, transaction);
+   }
+   
+
 
 }

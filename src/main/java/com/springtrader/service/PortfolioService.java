@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.springtrader.model.portfolio.Portfolio;
 import com.springtrader.model.portfolio.PortfolioDAO;
+import com.springtrader.model.portfolio.TradeRow;
 
 @Service 
 public class PortfolioService {
@@ -16,10 +17,13 @@ public class PortfolioService {
 	@Autowired
 	DataSource dataSource;
 	
+	@Autowired
+	ExternalStockService stockService;
+	
 	public List<Portfolio> getPortfolios(String username) {
 		PortfolioDAO pDao = new PortfolioDAO();
 		pDao.setDataSource(dataSource);
-		return pDao.getUserPortfolios(username);
+		return pDao.getUserPortfolios(username, stockService);
 	}
 	
 	public String addPortfolio(String username, String portfolioName) {
@@ -27,5 +31,25 @@ public class PortfolioService {
 		pDao.setDataSource(dataSource);
 		return pDao.addPortfolio(username, portfolioName);
 	}
-
+	
+	public String deletePortfolio(long id, String username) {
+		PortfolioDAO pDao = new PortfolioDAO();
+		pDao.setDataSource(dataSource);
+		String portfolioUser = pDao.getPortfolioUser(id);
+		if(portfolioUser.equals(username)) {
+			return pDao.deletePortfolio(id);
+		}
+		return "You can't do that...";
+	}
+	
+	public String addTransaction(long id, String username, TradeRow transaction) {
+		PortfolioDAO pDao = new PortfolioDAO();
+		pDao.setDataSource(dataSource);
+		String portfolioUser = pDao.getPortfolioUser(id);
+		if(portfolioUser.equals(username)) {
+			return pDao.addTransaction(id, username, transaction);
+		}
+		return "You can't do that...";
+	}
+	
 }

@@ -5,10 +5,9 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component
-@Qualifier("mockStock")
-
-public class StockMockDAO implements IStockDAO{
+//@Component
+//@Qualifier("mockStock")
+public class MockStock implements IStock{
 	Random random = new Random();
 	@Override
 	public Stock getStockQuote(String symbol) {
