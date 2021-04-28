@@ -24,7 +24,6 @@ polygon.api.key=[]
 spring.h2.console.enabled=true
 spring.jpa.hibernate.ddl-auto=none
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
-spring.security.oauth2.resourceserver.jwt.jwk-set-uri: <JWK_ENDPOINT>
 ```
 ### 4. Replace the brackets with API keys:
    #### AlphaVantage free API key: https://www.alphavantage.co/
