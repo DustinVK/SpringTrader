@@ -47,4 +47,4 @@ password: pass
 ```
 ## Screenshots:
 ![GitHub Logo](/docs/screenshots/login-screenshot.PNG)
-Format: ![Alt Text](url)
+
