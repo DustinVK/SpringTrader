@@ -46,5 +46,7 @@ username: user
 password: pass
 ```
 ## Screenshots:
-![GitHub Logo](/docs/screenshots/login-screenshot.PNG)
+![Login](/docs/screenshots/login-screenshot.PNG)
+![Login](/docs/screenshots/portfolio-screenshot.PNG)
+![Login](/docs/screenshots/stock-search-screenshot.PNG)
 
