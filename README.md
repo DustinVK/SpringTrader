@@ -1,10 +1,10 @@
 # SpringTrader
 Investment portfolio tracker made with Spring Boot 
 
-##To start:
-###1. Clone repo.
-###2. Create a new file, 'application.properties' in the resources directory
-###3. Copy the following to application.properties:
+## To start:
+### 1. Clone repo.
+### 2. Create a new file, 'application.properties' in the resources directory
+### 3. Copy the following to application.properties:
 ```
 server.port=${port:8080}
 spring.application.name = Spring Trader
@@ -23,21 +23,21 @@ spring.jpa.hibernate.ddl-auto=none
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 spring.security.oauth2.resourceserver.jwt.jwk-set-uri: <JWK_ENDPOINT>
 ```
-###4. Replace the brackets with API keys:
-   ####AlphaVantage free API key: https://www.alphavantage.co/
+### 4. Replace the brackets with API keys:
+   #### AlphaVantage free API key: https://www.alphavantage.co/
 ```
 alphavantage.api.key=[put key here without brackets]
 ```
-   ####Finnhub free API key: https://finnhub.io/
+   #### Finnhub free API key: https://finnhub.io/
 ```
 finnhub.api.key=[put key here without brackets]
 ```
-   ####Polygon free API key: https://polygon.io/
+   #### Polygon free API key: https://polygon.io/
 ```
 polygon.api.key=[put key here without brackets]
 ```
-###5. Run the project and go to http://localhost:8080/SpringTrader/
-###6. Login to test user account:
+### 5. Run the project and go to http://localhost:8080/SpringTrader/
+### 6. Login to test user account:
 ```
 username: user
 password: pass
