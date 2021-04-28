@@ -1,7 +1,7 @@
 # SpringTrader
 ## Search investment assets · Add to your portfolio · Track profits and losses
 
-Investment portfolio tracker made with Spring Boot. Spring Trader utilizes spring security to implement JSON Web Token authentication. It aggregates stock data from multiple sources (currently AlphaVantage, Finnhub, and Polygon) using dependency injection and interfaces to decouple the application from the data. 
+Spring Trader is an investment portfolio tracking web application made with Spring Boot. Spring Trader utilizes spring security to implement JSON Web Token authentication. It aggregates stock data from multiple sources (currently AlphaVantage, Finnhub, and Polygon) using dependency injection and interfaces to decouple the application from the data. 
  
 
 ## To start:
@@ -24,7 +24,6 @@ polygon.api.key=[]
 spring.h2.console.enabled=true
 spring.jpa.hibernate.ddl-auto=none
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
-spring.security.oauth2.resourceserver.jwt.jwk-set-uri: <JWK_ENDPOINT>
 ```
 ### 4. Replace the brackets with API keys:
    #### AlphaVantage free API key: https://www.alphavantage.co/
@@ -45,3 +44,8 @@ polygon.api.key=[put key here without brackets]
 username: user
 password: pass
 ```
+## Screenshots:
+![Login](/docs/screenshots/login-screenshot.PNG)
+![Login](/docs/screenshots/portfolio-screenshot.PNG)
+![Login](/docs/screenshots/stock-search-screenshot.PNG)
+
