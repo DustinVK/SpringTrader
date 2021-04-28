@@ -1,5 +1,5 @@
 # SpringTrader
-    Search investment assets · Add to your portfolio · Track profits and losses
+## Search investment assets · Add to your portfolio · Track profits and losses
 
 Investment portfolio tracker made with Spring Boot. Spring Trader utilizes spring security to implement JSON Web Token authentication. It pulls Stock data from multiple API sources. 
 
