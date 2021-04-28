@@ -24,6 +24,21 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 spring.security.oauth2.resourceserver.jwt.jwk-set-uri: <JWK_ENDPOINT>
 ```
 4. Replace the brackets with API keys:
-  4. AlphaVantage free API key: https://www.alphavantage.co/
-  4. Finnhub free API key: https://finnhub.io/
-  4. Polygon free API key: https://polygon.io/
+   AlphaVantage free API key: https://www.alphavantage.co/
+```
+alphavantage.api.key=[put key here without brackets]
+```
+   Finnhub free API key: https://finnhub.io/
+```
+finnhub.api.key=[put key here without brackets]
+```
+   Polygon free API key: https://polygon.io/
+```
+polygon.api.key=[put key here without brackets]
+```
+5. Run the project and go to http://localhost:8080/SpringTrader/
+6. Login to test user account:
+```
+username: user
+password: pass
+```
