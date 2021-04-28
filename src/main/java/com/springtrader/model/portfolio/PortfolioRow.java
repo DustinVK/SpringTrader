@@ -3,6 +3,11 @@ package com.springtrader.model.portfolio;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+/*
+ * PorfolioRow represents one row of a portfolio 
+ * it is calculated from TradeRow records
+ */
+
 public class PortfolioRow {
 	private String symbol;
 	private BigDecimal amount;
@@ -28,18 +33,6 @@ public class PortfolioRow {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-//	public BigDecimal getHoldings() {
-//		return holdings;
-//	}
-//	public void setHoldings(BigDecimal holdings) {
-//		this.holdings = holdings;
-//	}
-//	public Timestamp getStamp() {
-//		return stamp;
-//	}
-//	public void setStamp(Timestamp stamp) {
-//		this.stamp = stamp;
-//	}
 	public BigDecimal getHoldings() {
 		return holdings;
 	}

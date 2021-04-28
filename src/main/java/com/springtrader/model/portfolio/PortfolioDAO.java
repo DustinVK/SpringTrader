@@ -33,25 +33,31 @@ public class PortfolioDAO {
 				"ORDER BY name DESC ";		
 		List<PortfolioMetaData> portfolioList = jdbc.query(sql, new PortfolioMetaRowMapper(), username);
 		
-		sql = "SELECT * FROM portfolios WHERE username = ? AND id = ? " +
-				"ORDER BY stamp DESC ";
+	
 		for(PortfolioMetaData meta : portfolioList) {
-			Portfolio portfolio = extractPortfolio(username, sql, meta);
+			Portfolio portfolio = extractPortfolio(username, meta);
 			list.add(portfolio);
 		}
 		
 		return list;
     }
 
-	private Portfolio extractPortfolio(String username, String sql, PortfolioMetaData meta) {
+	private Portfolio extractPortfolio(String username, PortfolioMetaData meta) {
 		Portfolio portfolio = new Portfolio();
 		Long id = meta.getId();
-		List<TradeRow> rows = jdbc.query(sql, new TradeRowMapper(), username, id); 
+		List<TradeRow> rows = getTransactions(username, id); 
 		portfolio = portfolioUtil.getPortfolio(rows);
 		portfolio.getMetaData().setName(meta.getName());
 		portfolio.getMetaData().setId(id);
 		portfolio.getMetaData().setUsername(meta.getUsername());
 		return portfolio;
+	}
+
+	public List<TradeRow> getTransactions(String username, Long id) {
+		String sql = "SELECT * FROM portfolios WHERE username = ? AND id = ? " +
+				"ORDER BY stamp DESC ";
+		List<TradeRow> rows = jdbc.query(sql, new TradeRowMapper(), username, id);
+		return rows;
 	}
     
     public String getPortfolioUser(long id) {

@@ -52,4 +52,10 @@ public class PortfolioService {
 		return "You can't do that...";
 	}
 	
+	public List<TradeRow> getTransactions(String username, long id){
+		PortfolioDAO pDao = new PortfolioDAO();
+		pDao.setDataSource(dataSource);
+		return pDao.getTransactions(username, id);
+	}
+	
 }

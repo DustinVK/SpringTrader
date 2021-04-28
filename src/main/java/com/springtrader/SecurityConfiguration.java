@@ -1,4 +1,4 @@
-package com.springtrader.util;
+package com.springtrader;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +12,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.springtrader.service.MyUserDetailsService;
+import com.springtrader.util.JwtRequestFilter;
+import com.springtrader.util.UserSecurity;
 
 @Configuration
 @EnableWebSecurity
@@ -29,6 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(muds);
+		// regular jdbc auth for reference:
 //		auth.jdbcAuthentication()
 //	      .dataSource(dataSource)
 //	      .usersByUsernameQuery("select username,password,enabled "

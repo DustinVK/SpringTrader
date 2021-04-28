@@ -3,9 +3,12 @@ package com.springtrader.model.portfolio;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+/*
+ * A TradeRow represents one transaction in a Portfolio
+ */
 public class TradeRow {
 	private String symbol;
-	private BigDecimal amount;
+	private BigDecimal amount; // positive for buys, negative for sells
 	private BigDecimal price;
 	private Timestamp stamp;
 	
@@ -27,12 +30,6 @@ public class TradeRow {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-//	public BigDecimal getHoldings() {
-//		return holdings;
-//	}
-//	public void setHoldings(BigDecimal holdings) {
-//		this.holdings = holdings;
-//	}
 	public Timestamp getStamp() {
 		return stamp;
 	}

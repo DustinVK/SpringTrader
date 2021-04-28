@@ -193,16 +193,23 @@ function getPortfolios(){
 						}
 					
 						portfolio += " <div class='portfolio-card'><table class='p-header'><tr><th>"+
-						"<button class='btn btn-info btnround' id='p-trash' type='submit' onclick='deletePortfolio("+value.metaData.id+")'><i class='fa fa-times' aria-hidden='true'></i></button></th><th colspan='2'>"+value.metaData.name+"</th><th>"+percent+"</table>"+
+						"<button class='btn btn-info btnround' id='p-trash' type='submit' onclick='deletePortfolio("+value.metaData.id+")'>"+
+						"<i class='fa fa-times' aria-hidden='true'></i></button></th><th colspan='2'>"+value.metaData.name+"</th><th>"+percent+"</table>"+
 						"<table class='column-key'><tr><th>Symbol</th><th>Price</th><th>Amount</th><th>Holdings</th><tr>";
 						$.each(value.list, function(key, value) {
-							portfolio += "<table class='p-row'><tr><td><a class='stock-header' href='./?view=stock&symbol="+value.symbol+ "'>" + value.symbol + "</a></td><td>"+value.price+"</td><td>"+value.amount+"</td><td>$"+value.holdings+"</td><tr>";
+							portfolio += "<table class='p-row'><tr><td><a class='stock-header' href='./?view=stock&symbol="+value.symbol+ "'>" + value.symbol + 
+							"</a></td><td>"+value.price+"</td><td>"+value.amount+"</td><td>$"+value.holdings+"</td><tr>";
 						});
-						portfolio += "</table><table><tr><th>Cash in: $"+value.metaData.cashIn.toFixed(2)+"</th><th>Cash out: $"+value.metaData.cashOut.toFixed(2)+"</th>"+pl+"<th>Total: $"+value.metaData.totalHoldings.toFixed(2)+"</th></table>" +
-						"</table><table><tr><th></th><th></th><th></th><th><button class='btn btn-info btnround' id='add-stock' type='submit' onclick=''><i class='fa fa-plus' aria-hidden='true'></i> Add Transaction</button></th></tr></table></div>";
+						//var args = {value.metaData.id, value.metaData.name};
+						portfolio += "</table><table><tr><th>Cash in: $"+value.metaData.cashIn.toFixed(2)+"</th><th>Cash out: $"+value.metaData.cashOut.toFixed(2)+
+						"</th>"+pl+"<th>Total: $"+value.metaData.totalHoldings.toFixed(2)+"</th></table>" +
+						"</table><table><tr><th></th><th></th><th><button class='btn btn-info btnround' id='add-stock' type='submit' onclick='getTransactions("+value.metaData.id+")'>"+
+						"View Transactions</button></th><th><button class='btn btn-info btnround' data-toggle='modal' data-target='#transaction-modal' onclick='setTransactionModalId("+value.metaData.id+")'>"+
+						"<i class='fa fa-plus' aria-hidden='true'></i> Add Transaction</button></th></tr></table></div>";
 
 					});
-						portfolio += "<div class='portfolio-card'><button type='button' class='btn btn-info btn-round' data-toggle='modal' data-target='#portfolio-modal'><i class='fa fa-plus' aria-hidden='true'></i> New Portfolio</button><div>" ;
+						portfolio += "<div class='portfolio-card'><button type='button' class='btn btn-info btn-round' data-toggle='modal' data-target='#portfolio-modal'>"+
+						"<i class='fa fa-plus' aria-hidden='true'></i> New Portfolio</button><div>" ;
 						$("#pageBody").append(portfolio);
 		});
 }
@@ -248,4 +255,70 @@ function deletePortfolio(id){
 			location.reload();
 		});
 	}
+}
+
+function getTransactions(id){
+	var uname = sessionStorage.getItem("uname");
+	$("#pageBody").empty();
+	$("#content-placeholder").empty();
+	$.ajax({
+		url: "./users/"+uname+"/portfolios/"+id,
+		type: 'GET',
+		headers: {
+	  		"Authorization": "Bearer "+sessionStorage.getItem("token")
+	  	},
+		dataType : "json",
+        contentType: "application/json",
+	}).fail(function(response) {
+		console.log("error");
+		console.log(response);
+    }).done(function(response) {
+		var results = "<div class='big-stock-symbol'><h1></h1></div><div class='portfolio-card'>"+
+		"<table class='column-key'><tr><th>Date</th><th>Symbol</th><th>Price</th><th>Amount</th><th>Total</th><tr>";
+		
+		$.each(response, function(key, value) {
+				var stamp = value.stamp.split("T")[0];
+				var total = (value.price * value.amount).toFixed(2);
+				results += "<table class='p-row'><tr><td>"+stamp+"</td><td><a class='stock-header' href='./?view=stock&symbol="+value.symbol+ 
+				"'>" + value.symbol + "</a></td><td>"+value.price+"</td><td>"+value.amount+"</td><td>$"+total+"</td><tr>";
+			});
+		$("#pageBody").append(results);
+				
+	
+	});
+		
+}
+
+function setTransactionModalId(id){
+	document.getElementById("trade-portfolio-id").value = id;
+}
+
+function addTransaction(){
+	
+	var uname = sessionStorage.getItem("uname");
+	
+	var id = document.getElementById('trade-portfolio-id').value;
+	
+	var symbol = document.getElementById('trade-stock-symbol').value;	
+	var amount = document.getElementById('trade-amount').value;	
+	var price = document.getElementById('trade-price').value;	
+	var stamp = document.getElementById('trade-date').value + "T" + document.getElementById('trade-time').value;
+	console.log(stamp);
+	
+	var parms = {symbol:symbol, amount:amount, price:price, stamp:stamp}
+	$.ajax({
+		url: "./users/"+uname+"/portfolios/"+id,
+		type: 'POST',
+		headers: {
+    		"Authorization": "Bearer "+sessionStorage.getItem("token")
+  		},
+		dataType : "text",
+        contentType: "application/json",
+		data: JSON.stringify(parms)
+	}).fail(function(response) {
+		console.log(JSON.stringify(response));
+
+    }).done(function(response){
+		location.reload();
+	});
 }

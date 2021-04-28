@@ -20,6 +20,7 @@ import com.springtrader.service.SearchService;
 @Configuration
 @ComponentScan
 public class Config {
+	
 	@Bean
 	public static DataSource dataSource() {
 	    return new EmbeddedDatabaseBuilder()
@@ -27,6 +28,7 @@ public class Config {
 	      .addScript("classpath:jdbc/schema.sql")
 	      .addScript("classpath:jdbc/test-data.sql").build();
 	}
+		
 	@Bean
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();

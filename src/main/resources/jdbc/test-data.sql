@@ -15,15 +15,6 @@ INSERT INTO authorities (username, authority)
 INSERT INTO authorities (username, authority)
 	values ('admin', 'ADMIN');
 	
-INSERT INTO balances (username, amount, stamp)
-	values ('user', 2000.0,'2021-03-26 12:47:52.69');
-	
-INSERT INTO balances (username, amount, stamp)
-	values ('admin', 0.0,'2021-03-26 12:47:52.69');
-	
-INSERT INTO balances (username, amount, stamp)
-	values ('user', 166.13, '2021-03-29 18:47:52.69');
-	
 INSERT INTO userPortfolios(username, name)
 	values ('user', 'Meme Stocks');
 	
