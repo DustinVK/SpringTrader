@@ -1,18 +1,15 @@
 package com.springtrader.model.portfolio;
 
-
-import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.springframework.jdbc.core.ColumnMapRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.springtrader.service.ExternalStockService;
+import com.springtrader.service.StockService;
 import com.springtrader.util.PortfolioUtil;
 
 @Component
@@ -26,7 +23,7 @@ public class PortfolioDAO {
         this.jdbc= new JdbcTemplate(dataSource);
      }
     
-    public List<Portfolio> getUserPortfolios(String username, ExternalStockService stockService){
+    public List<Portfolio> getUserPortfolios(String username, StockService stockService){
     	List<Portfolio> list = new LinkedList<Portfolio>();
     	portfolioUtil.setStockService(stockService);
     	String sql = "SELECT * FROM userPortfolios WHERE username = ?" +
@@ -58,6 +55,15 @@ public class PortfolioDAO {
 				"ORDER BY stamp DESC ";
 		List<TradeRow> rows = jdbc.query(sql, new TradeRowMapper(), username, id);
 		return rows;
+	}
+	
+	public TransactionHistory getTransactionHistory(String username, Long id) {
+		TransactionHistory transactions = new TransactionHistory();
+		String name = getPortfolioName(id);
+		List<TradeRow> rows = getTransactions(username, id);
+		transactions.setName(name);
+		transactions.setList(rows);
+		return transactions;
 	}
     
     public String getPortfolioUser(long id) {
@@ -98,6 +104,12 @@ public class PortfolioDAO {
     	return String.valueOf(r);
     }
     
+    private String getPortfolioName(long id) {
+    	String sql = "SELECT * FROM userPortfolios WHERE id = ?";
+		List<PortfolioMetaData> portfolioList = jdbc.query(sql, new PortfolioMetaRowMapper(), id);
+		return portfolioList.get(0).getName();
+
+    }
     
     public String addTransaction(long id, String username, TradeRow transaction) {
     	String sql = "INSERT INTO portfolios(username, id, symbol, amount, price, stamp) VALUES (?, ?, ?, ?, ?, ?)";

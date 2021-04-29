@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.springtrader.model.external.search.AlphaVantageSearch;
 import com.springtrader.model.external.search.ISearch;
-import com.springtrader.service.ExternalStockService;
+import com.springtrader.service.StockService;
 import com.springtrader.service.SearchService;
 
 @Configuration
@@ -41,8 +41,8 @@ public class Config {
 	}
 	
 	@Bean
-	public ExternalStockService getStockService() {
-		return new ExternalStockService();
+	public StockService getStockService() {
+		return new StockService();
 	}
 	
 	@Bean

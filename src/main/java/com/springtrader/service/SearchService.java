@@ -1,6 +1,5 @@
 package com.springtrader.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +8,7 @@ import com.springtrader.model.external.search.SearchResult;
 
 
 public class SearchService {
-	
-	//final int ALPHAVANTAGE = 0;
-	//final int MOCK = 1;
-	
 	private int index = 0;
-
-	
 	// register services 
 	@Autowired
 	ISearch[] searchProviders;
@@ -29,15 +22,8 @@ public class SearchService {
 		}
 		return list;
 	}
-	
-	private void nextIndex() {
-		if(index < searchProviders.length-1) {
-			index ++;
-		} else {
-			index = 0;
-		}
-		
-	}
-	
 
+	private void nextIndex() {
+		index = (index +1) % searchProviders.length;
+	}
 }

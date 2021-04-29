@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.core.Authentication;
-import org.springframework.ui.Model;
-
 import com.springtrader.model.portfolio.NewPortfolio;
 import com.springtrader.model.portfolio.Portfolio;
 import com.springtrader.model.portfolio.TradeRow;
+import com.springtrader.model.portfolio.TransactionHistory;
 import com.springtrader.service.PortfolioService;
 
 @RestController
@@ -29,13 +28,14 @@ public class PortfolioController {
        return portfolios;
     }
    
+   // Using class for input 
    @PostMapping("/users/{username}/portfolios")
    public String addPortfolio(@PathVariable("username") String userName, @RequestBody NewPortfolio portfolio) {
       return portfolioService.addPortfolio(userName, portfolio.getPortfolioName());
    }
    
    @RequestMapping("/users/{username}/portfolios/{id}")
-   public List<TradeRow> showTransactions(@PathVariable("username") String username, @PathVariable("id") long id) {
+   public TransactionHistory showTransactions(@PathVariable("username") String username, @PathVariable("id") long id) {
       return portfolioService.getTransactions(username, id);
    }
    
@@ -48,6 +48,7 @@ public class PortfolioController {
      
    }
    
+   // Using class for input 
    @PostMapping("/users/{username}/portfolios/{id}")
    public String addTransaction(@PathVariable("username") String username, Authentication auth, @PathVariable("id") long id, @RequestBody TradeRow transaction) {
 	   if(auth.getName().equals(username)) {

@@ -273,18 +273,28 @@ function getTransactions(id){
 		console.log("error");
 		console.log(response);
     }).done(function(response) {
-		var results = "<div class='big-stock-symbol'><h1></h1></div><div class='portfolio-card'>"+
+		var results = "<div class='big-stock-symbol'><h1>"+response.name+"</h1></div><div class='portfolio-card'>"+
 		"<table class='column-key'><tr><th>Date</th><th>Symbol</th><th>Price</th><th>Amount</th><th>Total</th><tr>";
 		
-		$.each(response, function(key, value) {
+		$.each(response.list, function(key, value) {
 				var stamp = value.stamp.split("T")[0];
-				var total = (value.price * value.amount).toFixed(2);
+				var total = "";
+				if(value.amount > 0){
+					var amount = "Buy: " + value.amount;
+					total = "Cash in: $" + (value.price * value.amount).toFixed(2);
+				} else {
+					var amount = "Sell: " + value.amount*-1;
+					total = "Cash out: $" + (value.price * value.amount * -1).toFixed(2);
+				}
 				results += "<table class='p-row'><tr><td>"+stamp+"</td><td><a class='stock-header' href='./?view=stock&symbol="+value.symbol+ 
-				"'>" + value.symbol + "</a></td><td>"+value.price+"</td><td>"+value.amount+"</td><td>$"+total+"</td><tr>";
+				"'>" + value.symbol + "</a></td><td>"+value.price+"</td><td>"+amount+"</td><td>"+total+"</td><tr>";
 			});
+		
+		results += "<th><button class='btn btn-info btnround' data-toggle='modal' data-target='#transaction-modal' onclick='setTransactionModalId("+id+")'>"+
+						"<i class='fa fa-plus' aria-hidden='true'></i> Add Transaction</button></th></tr></table></div>";
+		
 		$("#pageBody").append(results);
 				
-	
 	});
 		
 }

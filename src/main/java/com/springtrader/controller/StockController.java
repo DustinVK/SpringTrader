@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springtrader.model.external.stock.Stock;
-import com.springtrader.service.ExternalStockService;
+import com.springtrader.service.StockService;
 
 @RestController
 @RequestMapping("/stock")
 public class StockController {
 	
 	@Autowired
-	ExternalStockService service;
+	StockService service;
 	
 	@RequestMapping("/{symbol}")
 	public Stock getStockQuote(@PathVariable String symbol) {

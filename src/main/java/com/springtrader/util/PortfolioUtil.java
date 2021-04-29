@@ -18,7 +18,7 @@ import com.springtrader.model.portfolio.Portfolio;
 import com.springtrader.model.portfolio.PortfolioMetaData;
 import com.springtrader.model.portfolio.PortfolioRow;
 import com.springtrader.model.portfolio.TradeRow;
-import com.springtrader.service.ExternalStockService;
+import com.springtrader.service.StockService;
 
 @Component
 public class PortfolioUtil {
@@ -27,9 +27,9 @@ public class PortfolioUtil {
 	final String CASH_OUT = "getUserPortfolioCashOut";
 	private int index = 0;
 
-	private ExternalStockService stockService;
+	private StockService stockService;
 
-	public void setStockService(ExternalStockService stockService) {
+	public void setStockService(StockService stockService) {
 		this.stockService = stockService;
 	}
 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.springtrader.model.portfolio.Portfolio;
 import com.springtrader.model.portfolio.PortfolioDAO;
 import com.springtrader.model.portfolio.TradeRow;
+import com.springtrader.model.portfolio.TransactionHistory;
 
 @Service 
 public class PortfolioService {
@@ -18,7 +19,7 @@ public class PortfolioService {
 	DataSource dataSource;
 	
 	@Autowired
-	ExternalStockService stockService;
+	StockService stockService;
 	
 	public List<Portfolio> getPortfolios(String username) {
 		PortfolioDAO pDao = new PortfolioDAO();
@@ -52,10 +53,10 @@ public class PortfolioService {
 		return "You can't do that...";
 	}
 	
-	public List<TradeRow> getTransactions(String username, long id){
+	public TransactionHistory getTransactions(String username, long id){
 		PortfolioDAO pDao = new PortfolioDAO();
 		pDao.setDataSource(dataSource);
-		return pDao.getTransactions(username, id);
+		return pDao.getTransactionHistory(username, id);
 	}
 	
 }

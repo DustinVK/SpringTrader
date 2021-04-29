@@ -9,7 +9,7 @@ import com.springtrader.model.external.stock.IStock;
 import com.springtrader.model.external.stock.Stock;
 
 
-public class ExternalStockService {
+public class StockService {
 	private int index = 0;
 	
 	@Autowired
@@ -24,11 +24,6 @@ public class ExternalStockService {
 	}
 	
 	private void nextIndex() {
-		if(index < stockProviders.length-1) {
-			index ++;
-		} else {
-			index = 0;
-		}
-		
+		index = (index +1) % stockProviders.length;
 	}
 }
