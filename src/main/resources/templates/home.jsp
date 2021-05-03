@@ -51,7 +51,7 @@
             <button type="button" class="btn btn-info btn-block btn-round" onclick="login()">Log In</button>
           </form>
           <div class="modal-footer d-flex justify-content-center">
-        <div class="signup-section">Not a member yet? <a href="#a" class="text-info"> Sign Up</a>.</div>
+       
        
       	</div>
       	 <div id="login-message"></div>

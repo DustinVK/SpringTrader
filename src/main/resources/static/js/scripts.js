@@ -150,8 +150,7 @@ function getStock(symbol){
     }).done(function(response) {
 	
 		var results = "<div class='big-stock-symbol'><h1>"+response.symbol+"</h1></div>" +
-		"<h2>$"+response.price+"</h2><h3>"+response.changePercent+"</h3>" +
-		"<button class='btn btn-info btnround' type='buy' onclick='buyStock("+symbol+")'>Buy</button>";   	
+		"<h2>$"+response.price+"</h2><h3>"+response.changePercent+"</h3>";   	
 				$("#pageBody").append(results);
 				
 	

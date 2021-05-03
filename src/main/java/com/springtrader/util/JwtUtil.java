@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,11 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
+@PropertySource("application.properties")
 public class JwtUtil {
 	
-	private final String KEY = "r>dA+tvB5)dq=#W9V2QN_3[2dz;JAH";
+	@Value("${jwt.key}")
+	private String KEY;
 	
 	public String extractUsername(String token) {
 		return extractClaim(token, Claims::getSubject);
